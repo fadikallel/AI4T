@@ -11,7 +11,7 @@ This is the official repository for the paper:
 ## Citation
 
 ```bibtex
-@inproceedings{stan_interspeech25,
+@inproceedings{combei_interspeech25,
   author={Combei, David and Stan, Adriana and Oneata, Dan and Müller, Nicolas and Cucu, Horia},
   booktitle={Proc. of Interspeech},
   title={{Unmasking real-world audio deepfakes: A data-centric approach}},
