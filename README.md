@@ -20,7 +20,7 @@ This is the official repository for the paper:
 ```
 ## Disclaimer
 
-> The dataset referenced in this paper is shared via publicly available links. We do not own the copyrights to redistribute the original samples directly.
-> The links included in this repository were valid as of February 2025. Any content removed from social media platforms before this date is not included.
-> Please note that some links may become unavailable over time due to platform policies regarding AI-generated or manipulated content or just by owners removing the content from the platform.
+The dataset referenced in this paper is shared via publicly available links. We do not own the copyrights to redistribute the original samples directly.
+The links included in this repository were valid as of February 2025. Any content removed from social media platforms before this date is not included.
+Please note that some links may become unavailable over time due to platform policies regarding AI-generated or manipulated content or just by owners removing the content from the platform.
 
