@@ -46,7 +46,7 @@ def load_dataset(indices, meta_dir, metadata, feats_dir, feats):
   return Xtrain, Ytrain, filename, dbs
 
 ## return the selected samples for each label of each dataset
-def cluster_based_pruned(X, y, order='ascending'):
+def cluster_based_pruned(X, y, pruning_fraction, order='ascending'):
     clf = NearestCentroid()
     clf.fit(X, y)
     centroids = clf.centroids_
@@ -61,7 +61,7 @@ def cluster_based_pruned(X, y, order='ascending'):
     selected_samples = []
     selected_labels = []
     for label in np.unique(y):
-        class_distances = distances[X[distances['index']] == label]
+        class_distances = distances[y[distances['index']] == label]
         if order == 'ascending':
             sorted_distances = np.sort(class_distances, order='distance')  ## ascending order (close points)
         elif order == 'descending':
@@ -69,8 +69,8 @@ def cluster_based_pruned(X, y, order='ascending'):
         else:
             raise ValueError(f"{order} is not a valid order, please choose from 'ascending' or 'descending'")
 
-        num_furthest = int(len(class_distances) * pruning_fraction)
-        top_points = sorted_distances[:num_furthest]['index']
+        num_points = int(len(class_distances) * pruning_fraction)
+        top_points = sorted_distances[:num_points]['index']
         selected_samples.extend(X[top_points])
         selected_labels.extend(y[top_points])
         ## add the centroid to the already selected data
@@ -103,6 +103,7 @@ for pruning_fraction in pruning_fractions:
         Xp, yp = cluster_based_pruned(
             X=X_ds,
             y=y_ds,
+            pruning_fraction=pruning_fraction,
             order='descending',
         )
         X_pruned_list.append(Xp)
