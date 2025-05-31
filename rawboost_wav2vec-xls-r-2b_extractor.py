@@ -247,7 +247,7 @@ def main(outdir,indir, metadata_file, args,algo):
 
     for layer_idx in range(11):
         stacked_embeddings = np.vstack(layer_embeddings[layer_idx])
-        np.save(os.path.join(outdir, f'{model_name}_Layer{layer_idx + 1}_for.npy'), stacked_embeddings)
+        np.save(os.path.join(outdir, f'{model_name}_Layer{layer_idx}_for.npy'), stacked_embeddings)
 
 
 if __name__ == '__main__':
