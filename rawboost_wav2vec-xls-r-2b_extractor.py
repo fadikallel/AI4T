@@ -231,7 +231,7 @@ def main(outdir,indir, metadata_file, args,algo):
     model_name = 'wav2vec2-xls-r-2b'
     feature_extractor = FEATURE_EXTRACTOR[model_name]()
 
-    layer_embeddings = [[] for _ in range(11)]
+    layer_embeddings = []
 
     for fi in tqdm(relevant_files):
             fi = f'{os.path.join(indir,fi)}'
@@ -239,15 +239,11 @@ def main(outdir,indir, metadata_file, args,algo):
             #algo = random.randint(1,24)
             audio = process_Rawboost_feature(audio, sr, args, algo)
             hidden_states = feature_extractor(audio, sr)
-
-            for layer_idx in range(11):
-                layer_output = hidden_states[layer_idx]
-                mean_layer_output = torch.mean(layer_output, dim=1).cpu().numpy()
-                layer_embeddings[layer_idx].append(mean_layer_output)
-
-    for layer_idx in range(11):
-        stacked_embeddings = np.vstack(layer_embeddings[layer_idx])
-        np.save(os.path.join(outdir, f'{model_name}_Layer{layer_idx}_for.npy'), stacked_embeddings)
+            layer_output = hidden_states[layer_idx]
+            mean_layer_output = torch.mean(layer_output, dim=1).cpu().numpy()
+            layer_embeddings[layer_idx].append(mean_layer_output)
+    stacked_embeddings = np.vstack(layer_embeddings)
+    np.save(os.path.join(outdir, f'{model_name}_feats_rawboost}_for.npy'), stacked_embeddings)
 
 
 if __name__ == '__main__':
