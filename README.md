@@ -53,8 +53,8 @@ Please note that some links may become unavailable over time due to platform pol
    ```
    xls-r-2b_codec-augm_extractor.py
    ```
-   
-   ## EXPERIMENTS
+
+## EXPERIMENTS
 
    1. Baseline deepfake detector: We extracted the features from all datasets and all layers using the script above and found out that layer 9 yield the best result. You can check the extended results for this analysis [here](https://docs.google.com/spreadsheets/d/1B3PGSqAgrYepOi66SEj0wHZy84aXPwot4GqWbehtwvM/edit?usp=sharing). We also augmentated the ASV19 train+dev for the baseline experiments.
    2. Dataset mixing: We train the logistic regression classifier and evaluate each combination on ITW and AI4T datasets. Run:
