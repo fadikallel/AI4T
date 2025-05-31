@@ -81,7 +81,7 @@ Please note that some links may become unavailable over time due to platform pol
       ```
       run_logReg_deepfake_detection_WAugm_margin_pruning.py
       ```
-      script. Please note that this process has some randomness due to the augmentation process, so results might are likely to be slightly different.
+      script. Please note that this process has some randomness due to the augmentation process, so results are likely to be slightly different.
 
 ## ACKNOWLEDGEMENTS
 
