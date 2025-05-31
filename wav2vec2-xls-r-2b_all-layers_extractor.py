@@ -61,7 +61,7 @@ def main(outdir, metadata_file):
 
     for layer_idx in range(48):
         stacked_embeddings = np.vstack(layer_embeddings[layer_idx])
-        np.save(os.path.join(outdir, f'wav2vec2-xls-r-2b_Layer{layer_idx + 1}_for.npy'), stacked_embeddings)
+        np.save(os.path.join(outdir, f'wav2vec2-xls-r-2b_Layer{layer_idx}_for.npy'), stacked_embeddings)
 
 if __name__ == '__main__':
     print('script running')
