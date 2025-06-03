@@ -63,11 +63,11 @@ Please note that some links may become unavailable over time due to platform pol
 
 ## EXPERIMENTS
 
-   # 1. Baseline deepfake detector: 
+   ### 1. Baseline deepfake detector: 
    
    We extracted the features from all datasets and all layers using the script above and found out that layer 9 yield the best result. You can check the extended results for this analysis [here](https://docs.google.com/spreadsheets/d/1B3PGSqAgrYepOi66SEj0wHZy84aXPwot4GqWbehtwvM/edit?usp=sharing). We also augmentated the ASV19 train+dev for the baseline experiments.
    
-   # 2. Dataset mixing
+   ### 2. Dataset mixing
    
    We train the logistic regression classifier and evaluate each combination on ITW and AI4T datasets. Run:
 
@@ -77,7 +77,7 @@ Please note that some links may become unavailable over time due to platform pol
       
   script for this experiment. You can check the extended results of Table 3 [here](https://docs.google.com/spreadsheets/d/1B3PGSqAgrYepOi66SEj0wHZy84aXPwot4GqWbehtwvM/edit?gid=0#gid=0).
    
-   #3. Data Pruning
+   ### 3. Data Pruning
    
   After finding the best dataset mixing combination, we move to data pruning strategies for ALL data and best dataset combination:
 
@@ -98,7 +98,7 @@ Please note that some links may become unavailable over time due to platform pol
   
   NOTE: for random selection, the seed is not set. We reported the average of 3 random seeds. Results might not look the same in your case.
    
-  # 5. Post pruning data augmentation:
+  ### 4. Post pruning data augmentation:
    
   After saving the file names of the selected data during pruning, you can augment only these samples if you did not augment all the data in previous steps. After building the final training set using the selected and augmented data, you can train the final      classifier that yields the best results, as in Table4 using
   
