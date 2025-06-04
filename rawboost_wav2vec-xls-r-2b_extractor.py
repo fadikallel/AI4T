@@ -182,7 +182,7 @@ class Dataset_ASVspoof2021_eval(Dataset):
 class Wav2Vec2Truncated(Wav2Vec2Model):
     def __init__(self, config):
         super().__init__(config)
-        self.encoder.layers = self.encoder.layers[:11]
+        self.encoder.layers = self.encoder.layers[:9]
 
 
 model_name = "facebook/wav2vec2-xls-r-2b"
