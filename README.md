@@ -109,7 +109,7 @@ These scripts will be extracting the features from layer 9 only. We truncated th
       ```
   In this script, we use the logistic regression's margins over the samples. We remove the closest or the closest and furthest samples with respect to the decision hyperplane, no matter the dataset. 
   For removing the closest samples use set the `strategy` parameter to `noisy` and in order to remove both closest and furthest, set the parameter to `both`.
-  Bellow you can see the results for the data selection experiments for ALL datasets and FoR+ODSS+MLAAD:
+  Below you can see the results for the data selection experiments for ALL datasets and FoR+ODSS+MLAAD:
 
   
   ![image](https://github.com/user-attachments/assets/34a16acb-cf50-4d01-9dd5-54a8a140bfe8)
@@ -122,7 +122,7 @@ These scripts will be extracting the features from layer 9 only. We truncated th
       run_logReg_deepfake_detection_WAugm_margin_pruning.py
       ```
   This script will train the logistic regression classifier from scratch using the most relevant data and their augmentations, resulting in the best version in our paper, as in the table below.
-  NOTE: this process has some randomness due to the augmentation process, so results are likely to be slightly different. Bellow you can see the results with the data augmentation post pruning:
+  NOTE: this process has some randomness due to the augmentation process, so results are likely to be slightly different. Below you can see the results with the data augmentation post pruning:
 
   ![image](https://github.com/user-attachments/assets/1a59428f-1257-46c1-8556-d4ad75e51f87)
 
