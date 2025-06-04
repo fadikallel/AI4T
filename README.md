@@ -117,7 +117,7 @@ These scripts will be extracting the features from layer 9 only. We truncated th
 
   
   ### 4. Post pruning data augmentation:
-  The margin pruning will save e matedata txt with the selected samples. You can use it to augment the data for this step. When you have the augmented features, run:
+  The margin pruning will save a matedata txt with the selected samples. You can use it to augment the data for this step if you did not augment it before. When you have the augmented features, run:
       ```
       run_logReg_deepfake_detection_WAugm_margin_pruning.py
       ```
