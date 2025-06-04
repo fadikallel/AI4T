@@ -73,7 +73,6 @@ These scripts will be extracting the features from layer 9 only. We truncated th
    ### 2. Dataset mixing
    
    Having 7 scientific datasets, we try dataset mixing to find to most relevant datasets for generalization on real-world datasets. For this, we train the Logistic Regression classifier using all datasets combinations (127) using the non-augmented features. For this experiment, run:
-
       ```
       train_logReg_iterative.py
       ```
@@ -95,18 +94,17 @@ These scripts will be extracting the features from layer 9 only. We truncated th
       ```
       cluster_based_pruning.py
       ```
-  
+  This approach computes a centroid using `NearestCentroid` and ranks the samples based on Euclidean distance. We apply this strategy independently on both real and fake samples from each of the 7 datasets, and obtain 2 * 7 sets of samples selected, which we ensemble in the final pruned dataset. It selects either the `cluster-closest` or `cluster-furthest` based on the `order` parameter.
   For margin pruning run:
       ```
       margin_pruning.py
       ```
-  
+  In this script, we use the logistic regression's margins over the samples. We remove the closest or the closest and furthest samples with respect to the decision hyperplane, no matter the dataset.
   
    
   ### 4. Post pruning data augmentation:
    
   After saving the file names of the selected data during pruning, you can augment only these samples if you did not augment all the data in previous steps. After building the final training set using the selected and augmented data, you can train the final      classifier that yields the best results, as in Table4 using
-  
       ```
       run_logReg_deepfake_detection_WAugm_margin_pruning.py
       ```
