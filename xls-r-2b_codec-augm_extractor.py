@@ -78,7 +78,8 @@ def read_metadata(file_path):
             parts = line.strip().split('|')
             if len(parts) > 1:
                 relevant_files.append(parts[0])
-    return sorted(relevant_files)
+    ## Be careful to the order in which the features are extracted !!
+    return relevant_files
 
 
 def extract_features_codec(outdir,indir, metadata_file):
