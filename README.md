@@ -38,53 +38,58 @@ Please note that some links may become unavailable over time due to platform pol
      - [FoR](https://www.kaggle.com/datasets/mohammedabdeldayem/the-fake-or-real-dataset/data)
      - [ITW](https://owncloud.fraunhofer.de/index.php/s/JZgXh0JEAF0elxa)
 
-   Links for the AI4T data are available in `links` directory. NOTE: Each audio file was segmented into 10 seconds chunks for our experiments.
+   Links for the AI4T data are available in `AI4T dataset` directory. NOTE: Each audio file was segmented into 10 seconds chunks for our experiments.
 
-3. Feature Extraction
+2. Feature Extraction
 
    In our implementation we used the pretrained and frozen SSL model [wav2vec2-xls-r-2b](https://huggingface.co/facebook/wav2vec2-xls-r-2b).
    You can extract the averaged pool representation from each layer using the following script:
-
-   ```
-   wav2vec2-xls-r-2b_all-layers_extractor.py
-   ```
-
-    You can also extract the RawBoost and codec augmented features from the 9th layer of the model using the following scripts:
-
+    ```
+    wav2vec2-xls-r-2b_all-layers_extractor.py
+    ```
+    The result of this script will be 49 `.npy` files, one from each layer, layer 0 being the output for convolution block and 1-48 are the transformers. Each sample will be saved in `1x1920` shape. In our experiments, the 9th transformer layer was performing best (you can check the extended results [here](https://github.com/davidcombei/AI4T/blob/main/Layers_eval.pdf).
+   For data augmentation, we used the first 2 algorithms together in series described by Tak et al. in [RawBoost](https://arxiv.org/abs/2111.04433) paper and the codec, where we use AAC and Opus with a chance of 50/50.
+    For the RawBoost and codec augmented features:
    ```
    rawboost_wav2vec-xls-r-2b_extractor.py
    ```
-
    and
-
    ```
    xls-r-2b_codec-augm_extractor.py
    ```
+These scripts will be extracting the features from layer 9 only. We truncated the SSL model from 48 transformer layers to only 9, speeding up the inference time.
 
+3. Config
+   In ``` config.py ``` file you have all the directory and file paths necessary to run the experiments. Please modify it accordingly. 
 ## EXPERIMENTS
 
    ### 1. Baseline deepfake detector: 
    
-   We extracted the features from all datasets and all layers using the script above and found out that layer 9 yield the best result. You can check the extended results for this analysis [here](https://docs.google.com/spreadsheets/d/1B3PGSqAgrYepOi66SEj0wHZy84aXPwot4GqWbehtwvM/edit?usp=sharing). We also augmentated the ASV19 train+dev for the baseline experiments.
+   For the baseline deepfake detector, the training data used is ASV19 train+dev partitions and evaluate on all the datasets. We compare the last hidden state (L) and layer 9(B:9) with non-augmented features, and all 3 combinations of augmented features (+RB), (+C) and (+RB+C) using layer 9  as shown in the table below:
    
+   ![image](https://github.com/user-attachments/assets/948ea6cd-de00-412d-ac3c-80a7b95f0d13)
+
+   We can see that data augmentation improves the results for scientific datasets, in contrast with the behaviour while evaluating on real-world datasets.
    ### 2. Dataset mixing
    
-   We train the logistic regression classifier and evaluate each combination on ITW and AI4T datasets. Run:
+   Having 7 scientific datasets, we try dataset mixing to find to most relevant datasets for generalization on real-world datasets. For this, we train the Logistic Regression classifier using all datasets combinations (127) using the non-augmented features. For this experiment, run:
 
       ```
       train_logReg_iterative.py
       ```
-      
-  script for this experiment. You can check the extended results of Table 3 [here](https://docs.google.com/spreadsheets/d/1B3PGSqAgrYepOi66SEj0wHZy84aXPwot4GqWbehtwvM/edit?gid=0#gid=0).
+  This script will save in a log file named `results.txt` all the combinations and EER for both ITW and AI4T. 
+  You can check the extended results for this experiment [here](https://github.com/davidcombei/AI4T/blob/main/Dataset%20mixing.pdf).
    
    ### 3. Data Pruning
    
-  After finding the best dataset mixing combination, we move to data pruning strategies for ALL data and best dataset combination:
+  After finding the best dataset mixing combination, we move to data pruning strategies for all 7 datasets combined (ALL) and best dataset combination (FoR+ODSS+MLAAD):
 
   For random selection run:
       ```
       random_selection.py
       ```
+  This script will randomly select samples from all seven training sets combined, using selection percentages ranging from 10% to 90%. For each percentage, the sampling is repeated 3 times with different random seeds.
+  NOTE: We reported the average of 3 random seeds. Results might not look the same in your case.
   
   For cluster based pruning run:
       ```
@@ -96,7 +101,7 @@ Please note that some links may become unavailable over time due to platform pol
       margin_pruning.py
       ```
   
-  NOTE: for random selection, the seed is not set. We reported the average of 3 random seeds. Results might not look the same in your case.
+  
    
   ### 4. Post pruning data augmentation:
    
