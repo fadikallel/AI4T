@@ -65,7 +65,7 @@ def prune_by_margin(train_groups, eval_groups, meta_dir, metadata, feats_dir, fe
 
         important_index = [i for i, k in enumerate(important_points) if k]
         margin_total += margin_percentage
-        fpath = f"selected_files__{pruning_strategy}_{margin_total}.txt"
+        fpath = f"selected_files_{pruning_strategy}_{margin_total}.txt"
         with open(fpath, "w") as fout:
             print(f"Writing to {fpath}")
             for ind in important_index:
