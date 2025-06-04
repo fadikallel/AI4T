@@ -109,7 +109,10 @@ These scripts will be extracting the features from layer 9 only. We truncated th
   In this script, we use the logistic regression's margins over the samples. We remove the closest or the closest and furthest samples with respect to the decision hyperplane, no matter the dataset. 
   For removing the closest samples use set the `strategy` parameter to `noisy` and in order to remove both closest and furthest, set the parameter to `both`.
   Bellow you can see the results for the data selection experiments for ALL datasets and FoR+ODSS+MLAAD:
-  ![image](https://github.com/user-attachments/assets/81504bb6-8d49-4b12-825f-6919e0c8ffbc)
+
+  
+  ![image](https://github.com/user-attachments/assets/34a16acb-cf50-4d01-9dd5-54a8a140bfe8)
+
 
   
   ### 4. Post pruning data augmentation:
