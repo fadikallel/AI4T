@@ -26,7 +26,7 @@ Please note that some links may become unavailable over time due to platform pol
 
 ## SETUP
 
-1. Datasets
+1. Datasets and dependencies
 
    Download the datasets from their original repositories:
      - [ASV19](https://datashare.ed.ac.uk/handle/10283/3336)
@@ -40,7 +40,13 @@ Please note that some links may become unavailable over time due to platform pol
 
    Links for the AI4T data are available in `AI4T dataset` directory. NOTE: Each audio file was segmented into 10 seconds chunks for our experiments.
 
-2. Feature Extraction
+   For the dependencies, run:
+
+   ```
+   pip install -r requirements.txt
+   ```
+
+3. Feature Extraction
 
    In our implementation we used the pretrained and frozen SSL model [wav2vec2-xls-r-2b](https://huggingface.co/facebook/wav2vec2-xls-r-2b).
    You can extract the averaged pool representation from each layer using the following script:
@@ -60,7 +66,8 @@ Please note that some links may become unavailable over time due to platform pol
 These scripts will be extracting the features from layer 9 only. We truncated the SSL model from 48 transformer layers to only 9, speeding up the inference time.
 
 3. Config
-   In ``` config.py ``` file you have all the directory and file paths necessary to run the experiments. Please modify it accordingly. 
+   
+   In ``` config.py ``` file you have all the directory and file paths necessary to run the experiments. Please modify it accordingly to your paths and names. 
 ## EXPERIMENTS
 
    ### 1. Baseline deepfake detector: 
@@ -88,27 +95,33 @@ These scripts will be extracting the features from layer 9 only. We truncated th
       random_selection.py
       ```
   This script will randomly select samples from all seven training sets combined, using selection percentages ranging from 10% to 90%. For each percentage, the sampling is repeated 3 times with different random seeds.
-  NOTE: We reported the average of 3 random seeds. Results might not look the same in your case.
+  NOTE: We reported the average results of 3 random seeds. Results might not look the same in your case.
   
   For cluster based pruning run:
       ```
       cluster_based_pruning.py
       ```
-  This approach computes a centroid using `NearestCentroid` and ranks the samples based on Euclidean distance. We apply this strategy independently on both real and fake samples from each of the 7 datasets, and obtain 2 * 7 sets of samples selected, which we ensemble in the final pruned dataset. It selects either the `cluster-closest` or `cluster-furthest` based on the `order` parameter.
+  This approach computes a centroid using `NearestCentroid` and ranks the samples based on Euclidean distance. We apply this strategy independently on both real and fake samples from each of the N datasets, and obtain 2 * N sets of samples selected, which we ensemble in the final pruned dataset. It selects either the `cluster-closest` or `cluster-furthest` based on the `order` parameter.
   For margin pruning run:
       ```
       margin_pruning.py
       ```
-  In this script, we use the logistic regression's margins over the samples. We remove the closest or the closest and furthest samples with respect to the decision hyperplane, no matter the dataset.
+  In this script, we use the logistic regression's margins over the samples. We remove the closest or the closest and furthest samples with respect to the decision hyperplane, no matter the dataset. 
+  For removing the closest samples use set the `strategy` parameter to `noisy` and in order to remove both closest and furthest, set the parameter to `both`.
+  Bellow you can see the results for the data selection experiments for ALL datasets and FoR+ODSS+MLAAD:
+  ![image](https://github.com/user-attachments/assets/81504bb6-8d49-4b12-825f-6919e0c8ffbc)
+
   
-   
   ### 4. Post pruning data augmentation:
-   
-  After saving the file names of the selected data during pruning, you can augment only these samples if you did not augment all the data in previous steps. After building the final training set using the selected and augmented data, you can train the final      classifier that yields the best results, as in Table4 using
+  The margin pruning will save e matedata txt with the selected samples. You can use it to augment the data for this step. When you have the augmented features, run:
       ```
       run_logReg_deepfake_detection_WAugm_margin_pruning.py
       ```
-  script. Please note that this process has some randomness due to the augmentation process, so results are likely to be slightly different.
+  This script will train the logistic regression classifier from scratch using the most relevant data and their augmentations, resulting in the best version in our paper, as in the table below.
+  NOTE: this process has some randomness due to the augmentation process, so results are likely to be slightly different. Bellow you can see the results with the data augmentation post pruning:
+
+  ![image](https://github.com/user-attachments/assets/1a59428f-1257-46c1-8556-d4ad75e51f87)
+
 
 ## ACKNOWLEDGEMENTS
 
