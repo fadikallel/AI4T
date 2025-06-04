@@ -102,6 +102,7 @@ These scripts will be extracting the features from layer 9 only. We truncated th
       cluster_based_pruning.py
       ```
   This approach computes a centroid using `NearestCentroid` and ranks the samples based on Euclidean distance. We apply this strategy independently on both real and fake samples from each of the N datasets, and obtain 2 * N sets of samples selected, which we ensemble in the final pruned dataset. It selects either the `cluster-closest` or `cluster-furthest` based on the `order` parameter.
+  
   For margin pruning run:
       ```
       margin_pruning.py
