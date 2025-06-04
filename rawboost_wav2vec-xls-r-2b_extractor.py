@@ -208,7 +208,7 @@ class HuggingFaceFeatureExtractor:
         inputs = {k: v.to(self.device) for k, v in inputs.items()}
         with torch.no_grad():
             outputs = self.model(**inputs)
-        return outputs.hidden_states
+        return outputs.hidden_states[9]
 
 
 FEATURE_EXTRACTOR = {
@@ -222,7 +222,8 @@ def read_metadata(file_path):
             parts = line.strip().split('|')
             if len(parts) > 1:
                 relevant_files.append(parts[0])
-    return sorted(relevant_files)
+    ## Be careful to the order in which the features are extracted !!
+    return relevant_files
 
 
 def main(outdir,indir, metadata_file, args,algo):
