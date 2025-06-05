@@ -244,14 +244,17 @@ def main(outdir,indir, metadata_file, args,algo):
             mean_layer_output = torch.mean(layer_output, dim=1).cpu().numpy()
             layer_embeddings[layer_idx].append(mean_layer_output)
     stacked_embeddings = np.vstack(layer_embeddings)
-    np.save(os.path.join(outdir, f'{model_name}_feats_rawboost}_for.npy'), stacked_embeddings)
+    np.save(os.path.join(outdir, f'{model_name}_feats_rawboost_for.npy'), stacked_embeddings)
 
 
 if __name__ == '__main__':
     print('script running')
+    ## location of the wav files    
     indir = './DATA/FoR/'
+    ## location for the saved features
     outdir = './feats/wav2vec2-xls-r-2b/'
-    metadata_file = './for_systems.csv'
+    ## location of the metadata coresponding to the extracted dataset
+    metadata_file = './processed_metadata/for_systems.csv'
 
 
     class Args:
