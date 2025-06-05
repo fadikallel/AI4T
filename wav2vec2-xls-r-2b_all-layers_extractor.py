@@ -53,7 +53,7 @@ def main(outdir,indir, metadata_file):
     for fi in tqdm(relevant_files):
             audio, sr = librosa.load(os.path.join(indir,fi), sr=16000)
             hidden_states = feature_extractor(audio, sr)
-            for layer_idx in range(48):
+            for layer_idx in range(49):
                 layer_output = hidden_states[layer_idx]
                 ## average pooling on time frames
                 mean_layer_output = torch.mean(layer_output, dim=1).cpu().numpy()
