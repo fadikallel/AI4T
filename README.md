@@ -49,7 +49,7 @@ Please note that some links may become unavailable over time due to platform pol
 3. Feature Extraction
 
    In our implementation we used the pretrained and frozen SSL model [wav2vec2-xls-r-2b](https://huggingface.co/facebook/wav2vec2-xls-r-2b).
-   You can extract the averaged pool representation from each layer using the following script:
+   You can extract the averaged pool representation from each layer using the following script (please make sure to change the paths to the wav files and metadata accordingly):
     ```
     wav2vec2-xls-r-2b_all-layers_extractor.py
     ```
