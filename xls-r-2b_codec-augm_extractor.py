@@ -102,7 +102,10 @@ def extract_features_codec(outdir,indir, metadata_file):
 
 if __name__ == '__main__':
     print('script running')
+    ## location of the wav files    
     indir = './DATA/FoR/'
+    ## location for the saved features
     outdir = './feats/wav2vec2-xls-r-2b/'
-    metadata_file = './for_systems.csv'
+    ## location of the metadata coresponding to the extracted dataset
+    metadata_file = './processed_metada/for_systems.csv'
     extract_features_codec(outdir,indir, metadata_file)
