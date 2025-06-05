@@ -48,7 +48,7 @@ def main(outdir,indir, metadata_file):
     print(f"Metadata contains {len(relevant_files)} files.")
     feature_extractor = FEATURE_EXTRACTORS['wav2vec2-xls-r-2b']()
 
-    layer_embeddings = [[] for _ in range(48)]
+    layer_embeddings = [[] for _ in range(49)]
 
     for fi in tqdm(relevant_files):
             audio, sr = librosa.load(os.path.join(indir,fi), sr=16000)
@@ -59,7 +59,7 @@ def main(outdir,indir, metadata_file):
                 mean_layer_output = torch.mean(layer_output, dim=1).cpu().numpy()
                 layer_embeddings[layer_idx].append(mean_layer_output)
 
-    for layer_idx in range(48):
+    for layer_idx in range(49):
         stacked_embeddings = np.vstack(layer_embeddings[layer_idx])
         np.save(os.path.join(outdir, f'wav2vec2-xls-r-2b_Layer{layer_idx}_for.npy'), stacked_embeddings)
 
