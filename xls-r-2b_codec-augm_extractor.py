@@ -107,5 +107,5 @@ if __name__ == '__main__':
     ## location for the saved features
     outdir = './feats/wav2vec2-xls-r-2b/'
     ## location of the metadata coresponding to the extracted dataset
-    metadata_file = './processed_metada/for_systems.csv'
+    metadata_file = './processed_metadata/for_systems.csv'
     extract_features_codec(outdir,indir, metadata_file)
