@@ -43,7 +43,7 @@ def read_metadata(file_path):
     return relevant_files
 
 
-def main(outdir, metadata_file):
+def main(outdir,indir, metadata_file):
     relevant_files = read_metadata(metadata_file)
     print(f"Metadata contains {len(relevant_files)} files.")
     feature_extractor = FEATURE_EXTRACTORS['wav2vec2-xls-r-2b']()
@@ -51,8 +51,7 @@ def main(outdir, metadata_file):
     layer_embeddings = [[] for _ in range(48)]
 
     for fi in tqdm(relevant_files):
-        if os.path.exists(fi):
-            audio, sr = librosa.load(fi, sr=16000)
+            audio, sr = librosa.load(os.path.join(indir,fi), sr=16000)
             hidden_states = feature_extractor(audio, sr)
             for layer_idx in range(48):
                 layer_output = hidden_states[layer_idx]
@@ -66,7 +65,11 @@ def main(outdir, metadata_file):
 
 if __name__ == '__main__':
     print('script running')
-    outdir = './feats/wav2vec2-xls-r-2b'
-    metadata_file = './processed_metadata/for_systems.csv'
-    main(outdir, metadata_file)
+    ## location of the wav files    
+    indir = './DATA/FoR/'
+    ## location for the saved features
+    outdir = './feats/wav2vec2-xls-r-2b/'
+    ## location of the metadata coresponding to the extracted dataset
+    metadata_file = './processed_metada/for_systems.csv'
+    main(outdir,indir, metadata_file)
 
