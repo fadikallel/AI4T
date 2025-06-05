@@ -23,12 +23,12 @@ feats = [
         f"wav2vec2-xls-r-2b_Layer9_asv21.npy",
         f"wav2vec2-xls-r-2b_Layer9_asv5_train.npy",
         f"wav2vec2-xls-r-2b_Layer9_asv5_dev.npy",
-        f"wav2vec2-xls-r-2b_Layer9_odss_PITCH_CROP4.npy",
-        f"wav2vec2-xls-r-2b_Layer9_timit_tts_clean_PITCH_CROP4.npy",
+        f"wav2vec2-xls-r-2b_Layer9_odss.npy",
+        f"wav2vec2-xls-r-2b_Layer9_timit_tts_clean.npy",
         f"wav2vec2-xls-r-2b_Layer9_itw.npy",
         f"wav2vec2-xls-r-2b_Layer9_ai4trust.npy",
         f"wav2vec2-xls-r-2b_Layer9_mlaad_v5.npy",
-        f"wav2vec2-xls-r-2b_Layer9_m-ailabs_PITCH_CROP4.npy",
+        f"wav2vec2-xls-r-2b_Layer9_m-ailabs.npy",
     ]
 metadata_augm = [
             "metadata_marginPruned_XLS_fromALL_margin_both_135.txt",
@@ -37,6 +37,6 @@ metadata_augm = [
             "ai4trust_segm_systems.csv",
 ]
 feats_augm = [f"sel_from_ALL_margin_both_135_codecs_wav2vec2_xls-r-2b_embeddings/wav2vec2-xls-r-2b_augm_codecs_Layer9.npy",
-         "sel_from_ALL_margin_both_135_rawboost_wav2vec2_xls-r-2b_embeddings/wav2vec2-xls-r-2b_Layer9.npy",
+         "sel_from_ALL_margin_both_135_rawboost_wav2vec2_xls-r-2b_embeddings/wav2vec2-xls-r-2b_augm_rb_Layer9.npy",
          f"wav2vec2-xls-r-2b_Layer9_itw.npy",
          f"wav2vec2-xls-r-2b_Layer9_ai4trust.npy"]
