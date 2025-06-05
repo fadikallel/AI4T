@@ -68,7 +68,7 @@ These scripts will be extracting the features from layer 9 only. We truncated th
 
 3. Config
    
-   In ``` config.py ``` file you have all the directory and file paths necessary to run the experiments. Please modify it accordingly to your paths and names. 
+   In ``` config.py ``` file you have all the directory and file paths necessary to run the experiments. Please modify it accordingly to your paths and file names. 
 ## EXPERIMENTS
 
    ### 1. Baseline deepfake detector: 
