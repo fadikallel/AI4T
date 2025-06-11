@@ -93,9 +93,9 @@ These scripts will be extracting the features from layer 9 only. We truncated th
 
     In order to run the baseline deepfake detector with the data augmentation, run:
 
-   ```
-   baseline_logReg_augm.py
-   ```
+   ```bash
+   python baseline_logReg_all_layers.py
+
    This process has some randomness due to the data augmentation, so results will likely have small differences.
     
  
