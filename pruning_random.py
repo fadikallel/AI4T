@@ -11,7 +11,7 @@ def load_dataset(indices, meta_dir, metadata, feats_dir, feats):
     Xtrain, Ytrain, filename, dbs = [], [], [], []
     for index in indices:
         with open(os.path.join(meta_dir, metadata[index])) as fin:
-            for line in sorted(fin.readlines()):
+            for line in fin.readlines():
                 label = 1 if line.strip().split("|")[1] == "bonafide" else 0
                 Ytrain.append(label)
                 filename.append(line.strip().split("|")[0])
