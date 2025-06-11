@@ -65,7 +65,7 @@ metadata_augm = [
     "itw_systems.csv",
     "ai4trust_segm_systems.csv",
 ]
-## the augmented features that the margin pruning selected above (the ones that are saved in the metadata)
+## the augmented features that the margin pruning selected above (the ones that are saved in the metadata above)
 feats_augm = [
     "wav2vec2-xls-r-2b_augm_codecs_Layer9.npy",
     "wav2vec2-xls-r-2b_augm_rb_Layer9.npy",
