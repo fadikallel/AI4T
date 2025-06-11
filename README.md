@@ -62,13 +62,13 @@ Please note that some links may become unavailable over time due to platform pol
    For data augmentation (as introduced in Table 2), we used the first 2 algorithms of Rawboost as described in Tak et al. in [RawBoost](https://arxiv.org/abs/2111.04433).  As codecs, we selected AAC and Opus, each with a probability of 0.5. To generate these augmented features, run:
     
    ```
-   python rawboost_wav2vec-xls-r-2b_extractor.py
+   python wav2vec2-xls-r-2b_withRawboost_extractor.py
    ```
    
    and
    
    ```
-   python xls-r-2b_codec-augm_extractor.py
+   python wav2vec2-xls-r-2b_withCodec_extractor.py
    ```
 
 These scripts will extract the features from layer 9 alone.
@@ -144,7 +144,7 @@ This process has some randomness due to the data augmentation, so results will l
 
   For random pruning you can run:
       ```
-      python random_selection.py
+      python pruning_random.py
       ```
   
   This script will randomly select samples from all seven training sets combined, using selection percentages ranging from 10% to 90%. For each percentage, the sampling is repeated 3 times with different random seeds.
@@ -152,13 +152,13 @@ This process has some randomness due to the data augmentation, so results will l
   
   For cluster based pruning run:
       ```
-      python cluster_based_pruning.py
+      python pruning_cluster.py
       ```
   This approach computes a centroid using `NearestCentroid` and ranks the samples based on Euclidean distance. We apply this strategy independently on both real and fake samples from each of the N datasets, and obtain 2 * N sets of samples selected, which we ensemble in the final pruned dataset. It selects either the `cluster-closest` or `cluster-furthest` based on the `order` parameter.
   
   For margin pruning run:
       ```
-      python margin_pruning.py
+      python pruning_margin.py
       ```
   In this script, we use the logistic regression's margins over the samples. We remove the closest or the closest and furthest samples with respect to the decision hyperplane, irrespective of the dataset they pertain to. 
   For removing the closest samples use set the `strategy` parameter to `noisy` and in order to remove both closest and furthest, set the parameter to `both`.
