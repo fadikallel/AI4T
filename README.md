@@ -69,7 +69,7 @@ These scripts will be extracting the features from layer 9 only. We truncated th
    
 ## EXPERIMENTS
     
-    In ``` config.py ``` file you have all the directory and file paths necessary to run the experiments. Please modify it accordingly to your paths and file names.
+    In ` config.py `   file you have all the directory and file paths necessary to run the experiments. Please modify it accordingly to your paths and file names.
     Make sure that all features no matter the layer or dataset are in the same directory to avoid complications.
    ### 1. Baseline deepfake detector: 
    To reproduce this experiment faster, extract all the datasets using the first extraction script and after you identify the best performing layer, use the augmented extractors to extract the augmented ASV19 train+dev features from that layer. 
@@ -78,8 +78,8 @@ These scripts will be extracting the features from layer 9 only. We truncated th
    baseline_logReg_all_layers.py
    ```
    Output example:
-    ```
-    Using layer 10...
+   ```
+   Using layer 10...
     [asv19_eval          ] EER: 0.1
     [asv21               ] EER: 2.3
     [asv5                ] EER: 0.9
@@ -89,7 +89,7 @@ These scripts will be extracting the features from layer 9 only. We truncated th
     [timit               ] EER: 5.6
     [itw                 ] EER: 3.4
     [ai4trust            ] EER: 27.4
-    ```
+   ```
     In order to run the baseline deepfake detector with the data augmentation, run:
   ```
   baseline_logReg_augm.py
