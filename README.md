@@ -29,17 +29,19 @@ Please note that some links may become unavailable over time due to platform pol
 ### 1. Datasets and dependencies
 
    Download the **scientific datasets** from their original repositories:
-     - [ASV19](https://datashare.ed.ac.uk/handle/10283/3336)
-     - [ASV21](https://www.asvspoof.org/index2021.html)
-     - [ASV5](https://zenodo.org/records/14498691)
-     - [MLAAD](https://deepfake-total.com/mlaad)
-     - [TIMIT](https://zenodo.org/records/6560159)
-     - [ODSS](https://zenodo.org/records/8370668)
-     - [FoR](https://www.kaggle.com/datasets/mohammedabdeldayem/the-fake-or-real-dataset/data)
+  - [ASV19](https://datashare.ed.ac.uk/handle/10283/3336)
+     
+  - [ASV21](https://www.asvspoof.org/index2021.html)
+     
+  - [ASV5](https://zenodo.org/records/14498691)
+  - [MLAAD](https://deepfake-total.com/mlaad)
+  - [TIMIT](https://zenodo.org/records/6560159)
+  - [ODSS](https://zenodo.org/records/8370668)
+  - [FoR](https://www.kaggle.com/datasets/mohammedabdeldayem/the-fake-or-real-dataset/data)
   
    Download the **real-life** datasets:
-     - [ITW](https://owncloud.fraunhofer.de/index.php/s/JZgXh0JEAF0elxa)
-     - Links for the AI4T data are available in `AI4T dataset` directory. **NOTE**: Each audio file was segmented into 10 seconds chunks for our experiments.
+  - [ITW](https://owncloud.fraunhofer.de/index.php/s/JZgXh0JEAF0elxa)
+  - Links for the AI4T data are available in `AI4T dataset` directory. **NOTE**: Each audio file was segmented into 10 seconds chunks for our experiments.
 
    To install all the dependencies, run:
 
