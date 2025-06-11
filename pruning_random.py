@@ -11,7 +11,7 @@ def load_dataset(indices, meta_dir, metadata, feats_dir, feats):
     Xtrain, Ytrain, filename, dbs = [], [], [], []
     for index in indices:
         with open(os.path.join(meta_dir, metadata[index])) as fin:
-            for line in fin.readlines():
+            for line in sorted(fin.readlines()):
                 label = 1 if line.strip().split("|")[1] == "bonafide" else 0
                 Ytrain.append(label)
                 filename.append(line.strip().split("|")[0])
@@ -52,10 +52,11 @@ x_list = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
 for x_percent_random_selection in x_list:
     nr_of_random = int(x_percent_random_selection * len(Xtrain))
     print("Pruning fraction: ", x_percent_random_selection)
-    ## get the results from 3 random seed
-    for step in range(3):
-
-        random_indices = np.random.choice(len(Xtrain), nr_of_random, replace=False)
+    ## get the results from 3 random seeds
+    seeds = [42, 123, 987]
+    for step, seed in enumerate(seeds):
+        rng = np.random.default_rng(seed)
+        random_indices = rng.choice(len(Xtrain), nr_of_random, replace=False)
 
         selected_samples = [Xtrain[i] for i in random_indices]
         selected_labels = [ytrain[i] for i in random_indices]
