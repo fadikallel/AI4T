@@ -90,10 +90,12 @@ These scripts will be extracting the features from layer 9 only. We truncated th
     [itw                 ] EER: 3.4
     [ai4trust            ] EER: 27.4
    ```
+
     In order to run the baseline deepfake detector with the data augmentation, run:
-  ```
-  baseline_logReg_augm.py
-  ```
+
+   ```
+   baseline_logReg_augm.py
+   ```
    This process has some randomness due to the data augmentation, so results will likely have small differences.
     
  
