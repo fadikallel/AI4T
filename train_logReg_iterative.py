@@ -8,7 +8,6 @@ import os
 from config import *
 
 
-
 def load_dataset(indices, meta_dir, metadata, feats_dir, feats):
     Xtrain, Ytrain, filename, dbs = [], [], [], []
     for index in indices:
