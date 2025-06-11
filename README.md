@@ -38,7 +38,8 @@ Please note that some links may become unavailable over time due to platform pol
      - [FoR](https://www.kaggle.com/datasets/mohammedabdeldayem/the-fake-or-real-dataset/data)
      - [ITW](https://owncloud.fraunhofer.de/index.php/s/JZgXh0JEAF0elxa)
 
-   Links for the AI4T data are available in `AI4T dataset` directory. NOTE: Each audio file was segmented into 10 seconds chunks for our experiments.
+   Links for the AI4T data are available in `AI4T dataset` directory.
+   > **NOTE: Each audio file was segmented into 10 seconds chunks for our experiments.**
 
    For the dependencies, run:
 
