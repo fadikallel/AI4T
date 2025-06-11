@@ -69,8 +69,8 @@ These scripts will be extracting the features from layer 9 only. We truncated th
    
 ## EXPERIMENTS
     
-    In ` config.py `   file you have all the directory and file paths necessary to run the experiments. Please modify it accordingly to your paths and file names.
-    Make sure that all features no matter the layer or dataset are in the same directory to avoid complications.
+In ` config.py `   file you have all the directory and file paths necessary to run the experiments. Please modify it accordingly to your paths and file names.
+Make sure that all features no matter the layer or dataset are in the same directory to avoid complications.
     
    ### 1. Baseline deepfake detector: 
    To reproduce this experiment faster, extract all the datasets using the first extraction script and after you identify the best performing layer, use the augmented extractors to extract the augmented ASV19 train+dev features from that layer. 
