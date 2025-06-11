@@ -97,7 +97,7 @@ Using layer 9...
 In order to run the baseline deepfake detector with the data augmentation, run:
 
 ```
-python baseline_logReg_all_layers.py
+baseline_logReg_augm.py
 ```
 
 This process has some randomness due to the data augmentation, so results will likely have small differences.
