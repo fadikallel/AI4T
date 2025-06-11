@@ -74,14 +74,14 @@ These scripts will extract the features from layer 9 alone.
    
 ## EXPERIMENTS
     
-In ` config.py `   file you have all the directory and file paths necessary to run the experiments. Please modify it accordingly to your paths and file names.
-Make sure that all features no matter the layer or dataset are in the same directory to avoid complications.
+All paths required for the experiments are set in ` config.py `. Please modify them accordingly.
     
    ### 1. Baseline deepfake detector: 
-   To reproduce this experiment faster, extract all the datasets using the first extraction script and after you identify the best performing layer, use the augmented extractors to extract the augmented ASV19 train+dev features from that layer. 
-   For evaluation of all layers, run :
+   To reproduce this experiment faster, extract the features from all the datasets using the first extraction script. After you identify the best performing layer, use the augmented extractors to extract the augmented ASV19 train+dev features from that layer. 
+   
+   To evaluate the performance of each layer, run :
 ```
-baseline_logReg_all_layers.py
+python baseline_logReg_all_layers.py
 ```
 
 Output example:
@@ -102,7 +102,7 @@ Using layer 9...
 In order to run the baseline deepfake detector with the data augmentation, run:
 
 ```
-baseline_logReg_augm.py
+python baseline_logReg_augm.py
 ```
 
 This process has some randomness due to the data augmentation, so results will likely have small differences.
@@ -112,14 +112,17 @@ This process has some randomness due to the data augmentation, so results will l
    ![image](https://github.com/user-attachments/assets/948ea6cd-de00-412d-ac3c-80a7b95f0d13)
     
    We can see that data augmentation improves the results for scientific datasets, in contrast with the behaviour while evaluating on real-world datasets.
+   
    ### 2. Dataset mixing
    
-   Having 7 scientific datasets, we try dataset mixing to find to most relevant datasets for generalization on real-world datasets. For this, we train the Logistic Regression classifier using all datasets combinations (127) using the non-augmented features. For this experiment, run:
+   From the seven scientific datasets, we perform dataset mixing to find to most relevant datasets for generalization on real-world datasets. We train the Logistic Regression classifier using all dataset combinations (127) using the non-augmented features. You can run:
       ```
-      train_logReg_iterative.py
+      python train_logReg_iterative.py
       ```
-  This script will save in a log file named `results.txt` all the combinations and EER for both ITW and AI4T. 
+  
+  The script will save a log file named `results.txt`. 
   Output example:
+  
   ```
   Datasets: ['FoR', 'MLAAD'], ITW_eer:2.85, AI4TRUST_eer:18.37
   Datasets: ['FoR', 'ASV5'], ITW_eer:2.88, AI4TRUST_eer:32.43
@@ -135,39 +138,40 @@ This process has some randomness due to the data augmentation, so results will l
    
    ### 3. Data Pruning
    
-  After finding the best dataset mixing combination, we move to data pruning strategies for all 7 datasets combined (ALL) and best dataset combination (FoR+ODSS+MLAAD):
+  After finding the best dataset mixing combination, we move to data pruning strategies for all seven datasets combined (ALL) and best dataset combination from our paper (FoR+ODSS+MLAAD):
 
-  For random selection run:
+  For random pruning you can run:
       ```
-      random_selection.py
+      python random_selection.py
       ```
+  
   This script will randomly select samples from all seven training sets combined, using selection percentages ranging from 10% to 90%. For each percentage, the sampling is repeated 3 times with different random seeds.
   NOTE: We reported the average results of 3 random seeds. Results might not look the same in your case.
   
   For cluster based pruning run:
       ```
-      cluster_based_pruning.py
+      python cluster_based_pruning.py
       ```
   This approach computes a centroid using `NearestCentroid` and ranks the samples based on Euclidean distance. We apply this strategy independently on both real and fake samples from each of the N datasets, and obtain 2 * N sets of samples selected, which we ensemble in the final pruned dataset. It selects either the `cluster-closest` or `cluster-furthest` based on the `order` parameter.
   
   For margin pruning run:
       ```
-      margin_pruning.py
+      python margin_pruning.py
       ```
-  In this script, we use the logistic regression's margins over the samples. We remove the closest or the closest and furthest samples with respect to the decision hyperplane, no matter the dataset. 
+  In this script, we use the logistic regression's margins over the samples. We remove the closest or the closest and furthest samples with respect to the decision hyperplane, irrespective of the dataset they pertain to. 
   For removing the closest samples use set the `strategy` parameter to `noisy` and in order to remove both closest and furthest, set the parameter to `both`.
-  Below you can see the results for the data selection experiments for ALL datasets and FoR+ODSS+MLAAD:
-
+  Below you can see the results for the data selection experiments when using ALL datasets, or only the FoR+ODSS+MLAAD:
   
   ![image](https://github.com/user-attachments/assets/34a16acb-cf50-4d01-9dd5-54a8a140bfe8)
 
 
   
   ### 4. Post pruning data augmentation:
-  The margin pruning will save a `.txt` file with the selected samples. You can use it as a metadata to augment the data for this step if you did not augment it before. When you have the selected and augmented features, run:
+  The margin pruning script will save a `.txt` file containing the selected samples. You can use this extended list and augment the training data again using Rawboos and codecs. You can then run:
       ```
-      run_logReg_deepfake_detection_WAugm_margin_pruning.py
+      python run_logReg_deepfake_detection_WAugm_margin_pruning.py
       ```
+  
   This script will train the logistic regression classifier from scratch using the most relevant data and their augmentations, resulting in the best version in our paper, as in the table below.
   NOTE: this process has some randomness due to the augmentation process, so results are likely to be slightly different. Below you can see the results with the data augmentation post pruning:
 
