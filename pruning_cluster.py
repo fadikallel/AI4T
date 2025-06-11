@@ -12,7 +12,6 @@ def classify_with_eer_threshold(probs, threshold):
     return np.array([1 if p > threshold else 0 for p in probs])
 
 
-
 def load_dataset(indices, meta_dir, metadata, feats_dir, feats):
     Xtrain, Ytrain, filename, dbs = [], [], [], []
     for index in indices:

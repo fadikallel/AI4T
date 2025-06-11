@@ -109,7 +109,8 @@ def extract_features_codec(outdir, indir, metadata_file):
         layer_embeddings.append(mean_layer_output)
     stacked_embeddings = np.vstack(layer_embeddings)
     np.save(
-        os.path.join(outdir, f"wav2vec2-xls-r-2b_asv19_train_augm_codecs_Layer9.npy"), stacked_embeddings
+        os.path.join(outdir, f"wav2vec2-xls-r-2b_asv19_train_augm_codecs_Layer9.npy"),
+        stacked_embeddings,
     )
 
 

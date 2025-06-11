@@ -1,17 +1,17 @@
 train_groups = {
-        'asv19_train': [1],
-        'asv19_dev': [2],
-        'asv19_eval': [3],
-        'asv21': [4],
-        'asv5': [5, 6],
-        'for': [7],
-        'mlaad': [9,10],
-        'odss': [11],
-        'timit': [12],
+    "asv19_train": [1],
+    "asv19_dev": [2],
+    "asv19_eval": [3],
+    "asv21": [4],
+    "asv5": [5, 6],
+    "for": [7],
+    "mlaad": [9, 10],
+    "odss": [11],
+    "timit": [12],
 }
 eval_groups = {
-        'itw': [8],
-        'ai4trust': [0],
+    "itw": [8],
+    "ai4trust": [0],
 }
 meta_dir = "./processed_metadata/"
 metadata = [
@@ -46,10 +46,10 @@ feats = [
     f"wav2vec2-xls-r-2b_Layer9_timi.npy",
 ]
 asv19_augm = [
-    'wav2vec2-xls-r-2b_asv19_train_augm_rb_Layer9.npy',
-    'wav2vec2-xls-r-2b_asv19_dev_augm_rb_Layer9.npy',
-    'wav2vec2-xls-r-2b_asv19_train_augm_codecs_Layer9.npy',
-    'wav2vec2-xls-r-2b_asv19_dev_augm_codecs_Layer9.npy',
+    "wav2vec2-xls-r-2b_asv19_train_augm_rb_Layer9.npy",
+    "wav2vec2-xls-r-2b_asv19_dev_augm_rb_Layer9.npy",
+    "wav2vec2-xls-r-2b_asv19_train_augm_codecs_Layer9.npy",
+    "wav2vec2-xls-r-2b_asv19_dev_augm_codecs_Layer9.npy",
 ]
 metadata_augm = [
     "metadata_marginPruned_XLS_fromALL_margin_both_135.txt",

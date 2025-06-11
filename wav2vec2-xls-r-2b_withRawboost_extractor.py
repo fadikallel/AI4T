@@ -359,7 +359,8 @@ def main(outdir, indir, metadata_file, args, algo):
         layer_embeddings.append(mean_layer_output)
     stacked_embeddings = np.vstack(layer_embeddings)
     np.save(
-        os.path.join(outdir, f"wav2vec2-xls-r-2b_asv19_train_augm_rb_Layer9.npy"), stacked_embeddings
+        os.path.join(outdir, f"wav2vec2-xls-r-2b_asv19_train_augm_rb_Layer9.npy"),
+        stacked_embeddings,
     )
 
 
