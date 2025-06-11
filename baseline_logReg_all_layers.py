@@ -45,6 +45,7 @@ for layer in range(49):
     print(f" Using layer {layer}...")
 
     ## all layers feats for all datasets
+    ## make sure that all the feature files are in the same directory
     feats = [
         f"wav2vec2-xls-r-2b_Layer{layer}_ai4trust.npy",
         f"wav2vec2-xls-r-2b_Layer{layer}_asv19_train.npy",

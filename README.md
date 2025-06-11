@@ -66,17 +66,39 @@ Please note that some links may become unavailable over time due to platform pol
    ```
 These scripts will be extracting the features from layer 9 only. We truncated the SSL model from 48 transformer layers to only 9, speeding up the inference time.
 
-3. Config
    
-   In ``` config.py ``` file you have all the directory and file paths necessary to run the experiments. Please modify it accordingly to your paths and file names. 
 ## EXPERIMENTS
-
+    
+    In ``` config.py ``` file you have all the directory and file paths necessary to run the experiments. Please modify it accordingly to your paths and file names.
+    Make sure that all features no matter the layer or dataset are in the same directory to avoid complications.
    ### 1. Baseline deepfake detector: 
-   
-   For the baseline deepfake detector, the training data used is ASV19 train+dev partitions and evaluate on all the datasets. We compare the last hidden state (L) and layer 9(B:9) with non-augmented features, and all 3 combinations of augmented features (+RB), (+C) and (+RB+C) using layer 9  as shown in the table below:
-   
+   To reproduce this experiment faster, extract all the datasets using the first extraction script and after you identify the best performing layer, use the augmented extractors to extract the augmented ASV19 train+dev features from that layer. 
+   For evaluation of all layers, run :
+   ```
+   baseline_logReg_all_layers.py
+   ```
+   Output example:
+    ```
+    Using layer 10...
+    [asv19_eval          ] EER: 0.1
+    [asv21               ] EER: 2.3
+    [asv5                ] EER: 0.9
+    [for                 ] EER: 6.6
+    [mlaad               ] EER: 12.8
+    [odss                ] EER: 16.2
+    [timit               ] EER: 5.6
+    [itw                 ] EER: 3.4
+    [ai4trust            ] EER: 27.4
+    ```
+    In order to run the baseline deepfake detector with the data augmentation, run:
+  ```
+  baseline_logReg_augm.py
+  ```
+   This process has some randomness due to the data augmentation, so results will likely have small differences.
+    
+ 
    ![image](https://github.com/user-attachments/assets/948ea6cd-de00-412d-ac3c-80a7b95f0d13)
-
+    
    We can see that data augmentation improves the results for scientific datasets, in contrast with the behaviour while evaluating on real-world datasets.
    ### 2. Dataset mixing
    
@@ -85,7 +107,19 @@ These scripts will be extracting the features from layer 9 only. We truncated th
       train_logReg_iterative.py
       ```
   This script will save in a log file named `results.txt` all the combinations and EER for both ITW and AI4T. 
-  You can check the extended results for this experiment [here](https://github.com/davidcombei/AI4T/blob/main/Dataset%20mixing.pdf).
+  Output example:
+  ```
+  Datasets: ['FoR', 'MLAAD'], ITW_eer:2.85, AI4TRUST_eer:18.37
+  Datasets: ['FoR', 'ASV5'], ITW_eer:2.88, AI4TRUST_eer:32.43
+  Datasets: ['FoR', 'ASV21'], ITW_eer:2.62, AI4TRUST_eer:43.97
+  Datasets: ['TIMIT', 'MLAAD'], ITW_eer:8.45, AI4TRUST_eer:22.63
+  Datasets: ['TIMIT', 'ASV5'], ITW_eer:2.95, AI4TRUST_eer:27.09
+  Datasets: ['TIMIT', 'ASV21'], ITW_eer:4.36, AI4TRUST_eer:29.93
+  Datasets: ['MLAAD', 'ASV5'], ITW_eer:8.35, AI4TRUST_eer:24.78
+  Datasets: ['MLAAD', 'ASV21'], ITW_eer:5.67, AI4TRUST_eer:28.54
+  ```
+  You can check the extended results for this experiment [here](https://github.com/davidcombei/AI4T/blob/main/Dataset_mixing.pdf).
+    
    
    ### 3. Data Pruning
    
