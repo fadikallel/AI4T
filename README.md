@@ -82,7 +82,7 @@ baseline_logReg_all_layers.py
 Output example:
 
 ```
-Using layer 10...
+Using layer 9...
 [asv19_eval ] EER: 0.1  
 [asv21      ] EER: 2.3  
 [asv5       ] EER: 0.9  
