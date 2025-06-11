@@ -71,35 +71,37 @@ These scripts will be extracting the features from layer 9 only. We truncated th
     
     In ` config.py `   file you have all the directory and file paths necessary to run the experiments. Please modify it accordingly to your paths and file names.
     Make sure that all features no matter the layer or dataset are in the same directory to avoid complications.
+    
    ### 1. Baseline deepfake detector: 
    To reproduce this experiment faster, extract all the datasets using the first extraction script and after you identify the best performing layer, use the augmented extractors to extract the augmented ASV19 train+dev features from that layer. 
    For evaluation of all layers, run :
-   ```
-   baseline_logReg_all_layers.py
-   ```
-   Output example:
-   ```
-   Using layer 10...
-    [asv19_eval          ] EER: 0.1
-    [asv21               ] EER: 2.3
-    [asv5                ] EER: 0.9
-    [for                 ] EER: 6.6
-    [mlaad               ] EER: 12.8
-    [odss                ] EER: 16.2
-    [timit               ] EER: 5.6
-    [itw                 ] EER: 3.4
-    [ai4trust            ] EER: 27.4
+```
+baseline_logReg_all_layers.py
+```
 
-   ```
+Output example:
 
-    In order to run the baseline deepfake detector with the data augmentation, run:
+```
+Using layer 10...
+[asv19_eval ] EER: 0.1  
+[asv21      ] EER: 2.3  
+[asv5       ] EER: 0.9  
+[for        ] EER: 6.6  
+[mlaad      ] EER: 12.8  
+[odss       ] EER: 16.2  
+[timit      ] EER: 5.6  
+[itw        ] EER: 3.4  
+[ai4trust   ] EER: 27.4
+```
 
-    
-   ```
-   python baseline_logReg_all_layers.py
-   ```
+In order to run the baseline deepfake detector with the data augmentation, run:
 
-   This process has some randomness due to the data augmentation, so results will likely have small differences.
+```
+python baseline_logReg_all_layers.py
+```
+
+This process has some randomness due to the data augmentation, so results will likely have small differences.
+
     
  
    ![image](https://github.com/user-attachments/assets/948ea6cd-de00-412d-ac3c-80a7b95f0d13)
