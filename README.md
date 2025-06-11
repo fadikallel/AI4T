@@ -26,9 +26,9 @@ Please note that some links may become unavailable over time due to platform pol
 
 ## SETUP
 
-1. Datasets and dependencies
+### 1. Datasets and dependencies
 
-   Download the datasets from their original repositories:
+   Download the **scientific datasets** from their original repositories:
      - [ASV19](https://datashare.ed.ac.uk/handle/10283/3336)
      - [ASV21](https://www.asvspoof.org/index2021.html)
      - [ASV5](https://zenodo.org/records/14498691)
@@ -36,36 +36,40 @@ Please note that some links may become unavailable over time due to platform pol
      - [TIMIT](https://zenodo.org/records/6560159)
      - [ODSS](https://zenodo.org/records/8370668)
      - [FoR](https://www.kaggle.com/datasets/mohammedabdeldayem/the-fake-or-real-dataset/data)
+  
+   Download the **real-life** datasets:
      - [ITW](https://owncloud.fraunhofer.de/index.php/s/JZgXh0JEAF0elxa)
+     - Links for the AI4T data are available in `AI4T dataset` directory. **NOTE**: Each audio file was segmented into 10 seconds chunks for our experiments.
 
-   Links for the AI4T data are available in `AI4T dataset` directory.
-   > **NOTE: Each audio file was segmented into 10 seconds chunks for our experiments.**
-
-   For the dependencies, run:
+   To install all the dependencies, run:
 
    ```
    pip install -r requirements.txt
    ```
 
-3. Feature Extraction
+### 2. Feature Extraction
 
-   In our implementation we used the pretrained and frozen SSL model [wav2vec2-xls-r-2b](https://huggingface.co/facebook/wav2vec2-xls-r-2b).
-   You can extract the averaged pool representation from each layer using the following script:
-   Please make sure to change the paths to the wav files and use the metadata files from `processed_metadata` directory
+   In our implementation we used the features extracted from the **pretrained** SSL model [wav2vec2-xls-r-2b](https://huggingface.co/facebook/wav2vec2-xls-r-2b).
+   You can extract the averaged pool representation from each of its 48 layers using the following script. Please make sure to change the paths in the script.
     ```
-    wav2vec2-xls-r-2b_all-layers_extractor.py
+    python wav2vec2-xls-r-2b_all-layers_extractor.py
     ```
-    The result of this script will be 49 `.npy` files, one from each layer, layer 0 being the output for convolution block and 1-48 are the transformers. Each sample will be saved in `1x1920` shape. In our experiments, the 9th transformer layer was performing best (you can check the extended results [here](https://github.com/davidcombei/AI4T/blob/main/Layers_eval.pdf).
-   For data augmentation, we used the first 2 algorithms together in series described by Tak et al. in [RawBoost](https://arxiv.org/abs/2111.04433) paper and the codec, where we use AAC and Opus with a chance of 50/50.
-    For the RawBoost and codec augmented features:
+    
+  The output of this script will consist of 49 `.npy` files, one from each of the model's layers, where layer 0 is the output for convolution block and 1-48 are the transformers. For each audio sample a `1x1920` shaped vector will be created and stored in the order given by the processed_metadata file. In our experiments, the 9th transformer layer performed best (you can check the extended results [here](https://github.com/davidcombei/AI4T/blob/main/Layers_eval.pdf).
+  
+   For data augmentation (as introduced in Table 2), we used the first 2 algorithms of Rawboost as described in Tak et al. in [RawBoost](https://arxiv.org/abs/2111.04433).  As codecs, we selected AAC and Opus, each with a probability of 0.5. To generate these augmented features, run:
+    
    ```
-   rawboost_wav2vec-xls-r-2b_extractor.py
+   python rawboost_wav2vec-xls-r-2b_extractor.py
    ```
+   
    and
+   
    ```
-   xls-r-2b_codec-augm_extractor.py
+   python xls-r-2b_codec-augm_extractor.py
    ```
-These scripts will be extracting the features from layer 9 only. We truncated the SSL model from 48 transformer layers to only 9, speeding up the inference time.
+
+These scripts will extract the features from layer 9 alone.
 
    
 ## EXPERIMENTS
