@@ -3,7 +3,7 @@
 This is the official repository for the paper:
 
 > David Combei, Adriana Stan, Dan Oneata, Nicolas Müller, Horia Cucu,  
-> "Unmasking real-world audio deepfakes: A data-centric approach",  
+> ["Unmasking real-world audio deepfakes: A data-centric approach"[(https://arxiv.org/abs/2506.09606),  
 > accepted at Interspeech 2025, Rotterdam, Netherlands.
 
 ---
