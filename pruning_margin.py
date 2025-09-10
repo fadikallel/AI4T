@@ -145,7 +145,7 @@ if "__main__" == __name__:
     ## config
 
     model_path = "logreg_allData.joblib"
-    pruning_strategy = "noisy"  ## noisy or both
+    pruning_strategy = "both"  ## noisy or both
     margin_percentage = 10
 
     results, _ = prune_by_margin(

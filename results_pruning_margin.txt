@@ -1,0 +1,39 @@
+### Fitting baseline logReg
+Baseline ITW 3.27
+Baseline AI4T 33.65
+loaded:  logreg_baseline.joblib
+computing margins
+starting to prune
+10 percent: 97582
+using:  noisy pruning
+Writing to selected_files_noisy_10.txt
+number of samples after pruning: 878244
+Writing to selected_files_noisy_21.txt
+number of samples after pruning: 781637
+Writing to selected_files_noisy_33.txt
+number of samples after pruning: 687840
+Writing to selected_files_noisy_47.txt
+number of samples after pruning: 591542
+Writing to selected_files_noisy_63.txt
+number of samples after pruning: 496895
+Writing to selected_files_noisy_82.txt
+number of samples after pruning: 402486
+Writing to selected_files_noisy_106.txt
+number of samples after pruning: 305890
+Writing to selected_files_noisy_137.txt
+number of samples after pruning: 211064
+Writing to selected_files_noisy_183.txt
+number of samples after pruning: 113975
+Writing to selected_files_noisy_268.txt
+number of samples after pruning: 17098
+Step 1: EER ITW=2.0%, AI4T=15.8%
+Step 2: EER ITW=1.82%, AI4T=14.76%
+Step 3: EER ITW=1.98%, AI4T=12.77%
+Step 4: EER ITW=2.15%, AI4T=11.49%
+Step 5: EER ITW=2.49%, AI4T=12.22%
+Step 6: EER ITW=2.99%, AI4T=13.42%
+Step 7: EER ITW=2.48%, AI4T=13.39%
+Step 8: EER ITW=2.95%, AI4T=12.6%
+Step 9: EER ITW=3.26%, AI4T=14.14%
+Step 10: EER ITW=4.11%, AI4T=14.7%
+

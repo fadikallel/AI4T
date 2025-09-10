@@ -73,7 +73,7 @@ dataset_names = list(datasets.keys())
 
 all_combinations = []
 
-for r in range(1, len(dataset_names) + 1):
+for r in range(5, len(dataset_names) + 1):
     combinations_list = list(combinations(dataset_names, r))
     all_combinations.extend(combinations_list)
 
@@ -94,9 +94,12 @@ def write_metrics_to_file(metrics, filename="results.txt"):
     with open(filename, "a") as f:
         f.write(metrics + "\n")
 
-
+i = 0 
 for combination in combined_data:
     print(f"Training with datasets: {[comb[0] for comb in combination]}")
+    i += 1 
+    if i < 10:
+        continue
 
     train_combined = np.concatenate([comb[1][0] for comb in combination])
     train_labels_combined = np.concatenate([comb[1][1] for comb in combination])

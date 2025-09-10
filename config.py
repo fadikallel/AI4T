@@ -3,6 +3,7 @@ train_groups = {
     "asv19_train": [1],
     "asv19_dev": [2],
     "asv19_eval": [3],
+    "asv19_all" : [1,2,3],
     "asv21": [4],
     "asv5": [5, 6],
     "for": [7],

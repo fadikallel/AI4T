@@ -1,0 +1,128 @@
+Datasets: ['ASV19'], ITW_eer:3.47, AI4TRUST_eer:22.83
+Datasets: ['ODSS'], ITW_eer:4.27, AI4TRUST_eer:29.20
+Datasets: ['FoR'], ITW_eer:7.26, AI4TRUST_eer:41.90
+Datasets: ['TIMIT'], ITW_eer:28.93, AI4TRUST_eer:40.75
+Datasets: ['MLAAD'], ITW_eer:10.74, AI4TRUST_eer:34.06
+Datasets: ['ASV5'], ITW_eer:3.67, AI4TRUST_eer:26.30
+Datasets: ['ASV21'], ITW_eer:2.90, AI4TRUST_eer:25.12
+Datasets: ['ASV19', 'ODSS'], ITW_eer:3.61, AI4TRUST_eer:18.23
+Datasets: ['ASV19', 'FoR'], ITW_eer:3.77, AI4TRUST_eer:38.48
+Datasets: ['ASV19', 'TIMIT'], ITW_eer:3.20, AI4TRUST_eer:23.82
+Datasets: ['ASV19', 'MLAAD'], ITW_eer:7.75, AI4TRUST_eer:28.98
+Datasets: ['ASV19', 'ASV5'], ITW_eer:4.10, AI4TRUST_eer:35.73
+Datasets: ['ASV19', 'ASV21'], ITW_eer:3.32, AI4TRUST_eer:26.57
+Datasets: ['ODSS', 'FoR'], ITW_eer:2.92, AI4TRUST_eer:38.15
+Datasets: ['ODSS', 'TIMIT'], ITW_eer:4.36, AI4TRUST_eer:20.21
+Datasets: ['ODSS', 'MLAAD'], ITW_eer:6.41, AI4TRUST_eer:25.39
+Datasets: ['ODSS', 'ASV5'], ITW_eer:4.46, AI4TRUST_eer:22.88
+Datasets: ['ODSS', 'ASV21'], ITW_eer:3.44, AI4TRUST_eer:26.93
+Datasets: ['FoR', 'TIMIT'], ITW_eer:6.35, AI4TRUST_eer:25.49
+Datasets: ['FoR', 'MLAAD'], ITW_eer:3.17, AI4TRUST_eer:34.82
+Datasets: ['FoR', 'ASV5'], ITW_eer:5.87, AI4TRUST_eer:18.11
+Datasets: ['FoR', 'ASV21'], ITW_eer:3.03, AI4TRUST_eer:43.17
+Datasets: ['TIMIT', 'MLAAD'], ITW_eer:7.62, AI4TRUST_eer:28.25
+Datasets: ['TIMIT', 'ASV5'], ITW_eer:9.06, AI4TRUST_eer:15.43
+Datasets: ['TIMIT', 'ASV21'], ITW_eer:3.78, AI4TRUST_eer:25.80
+Datasets: ['MLAAD', 'ASV5'], ITW_eer:7.29, AI4TRUST_eer:18.00
+Datasets: ['MLAAD', 'ASV21'], ITW_eer:5.12, AI4TRUST_eer:35.96
+Datasets: ['ASV5', 'ASV21'], ITW_eer:3.16, AI4TRUST_eer:37.55
+Datasets: ['ASV19', 'ODSS', 'FoR'], ITW_eer:3.34, AI4TRUST_eer:38.64
+Datasets: ['ASV19', 'ODSS', 'TIMIT'], ITW_eer:3.21, AI4TRUST_eer:15.82
+Datasets: ['ASV19', 'ODSS', 'MLAAD'], ITW_eer:5.48, AI4TRUST_eer:24.21
+Datasets: ['ASV19', 'ODSS', 'ASV5'], ITW_eer:4.03, AI4TRUST_eer:32.86
+Datasets: ['ASV19', 'ODSS', 'ASV21'], ITW_eer:3.93, AI4TRUST_eer:35.44
+Datasets: ['ASV19', 'FoR', 'TIMIT'], ITW_eer:2.96, AI4TRUST_eer:41.76
+Datasets: ['ASV19', 'FoR', 'MLAAD'], ITW_eer:3.80, AI4TRUST_eer:33.18
+Datasets: ['ASV19', 'FoR', 'ASV5'], ITW_eer:4.30, AI4TRUST_eer:42.01
+Datasets: ['ASV19', 'FoR', 'ASV21'], ITW_eer:3.30, AI4TRUST_eer:45.04
+Datasets: ['ASV19', 'TIMIT', 'MLAAD'], ITW_eer:5.37, AI4TRUST_eer:27.35
+Datasets: ['ASV19', 'TIMIT', 'ASV5'], ITW_eer:3.17, AI4TRUST_eer:34.60
+Datasets: ['ASV19', 'TIMIT', 'ASV21'], ITW_eer:5.05, AI4TRUST_eer:27.76
+Datasets: ['ASV19', 'MLAAD', 'ASV5'], ITW_eer:5.24, AI4TRUST_eer:18.99
+Datasets: ['ASV19', 'MLAAD', 'ASV21'], ITW_eer:5.51, AI4TRUST_eer:32.28
+Datasets: ['ASV19', 'ASV5', 'ASV21'], ITW_eer:3.50, AI4TRUST_eer:38.29
+Datasets: ['ODSS', 'FoR', 'TIMIT'], ITW_eer:2.65, AI4TRUST_eer:41.32
+Datasets: ['ODSS', 'FoR', 'MLAAD'], ITW_eer:3.66, AI4TRUST_eer:34.12
+Datasets: ['ODSS', 'FoR', 'ASV5'], ITW_eer:3.35, AI4TRUST_eer:30.52
+Datasets: ['ODSS', 'FoR', 'ASV21'], ITW_eer:3.11, AI4TRUST_eer:39.37
+Datasets: ['ODSS', 'TIMIT', 'MLAAD'], ITW_eer:4.52, AI4TRUST_eer:24.95
+Datasets: ['ODSS', 'TIMIT', 'ASV5'], ITW_eer:3.43, AI4TRUST_eer:20.22
+Datasets: ['ODSS', 'TIMIT', 'ASV21'], ITW_eer:3.22, AI4TRUST_eer:23.46
+Datasets: ['ODSS', 'MLAAD', 'ASV5'], ITW_eer:5.97, AI4TRUST_eer:16.93
+Datasets: ['ODSS', 'MLAAD', 'ASV21'], ITW_eer:4.20, AI4TRUST_eer:26.19
+Datasets: ['ODSS', 'ASV5', 'ASV21'], ITW_eer:3.67, AI4TRUST_eer:38.42
+Datasets: ['FoR', 'TIMIT', 'MLAAD'], ITW_eer:2.69, AI4TRUST_eer:33.30
+Datasets: ['FoR', 'TIMIT', 'ASV5'], ITW_eer:5.73, AI4TRUST_eer:25.73
+Datasets: ['FoR', 'TIMIT', 'ASV21'], ITW_eer:2.73, AI4TRUST_eer:45.30
+Datasets: ['FoR', 'MLAAD', 'ASV5'], ITW_eer:3.98, AI4TRUST_eer:17.01
+Datasets: ['FoR', 'MLAAD', 'ASV21'], ITW_eer:2.48, AI4TRUST_eer:45.05
+Datasets: ['FoR', 'ASV5', 'ASV21'], ITW_eer:3.47, AI4TRUST_eer:43.60
+Datasets: ['TIMIT', 'MLAAD', 'ASV5'], ITW_eer:5.11, AI4TRUST_eer:15.65
+Datasets: ['TIMIT', 'MLAAD', 'ASV21'], ITW_eer:3.86, AI4TRUST_eer:33.13
+Datasets: ['TIMIT', 'ASV5', 'ASV21'], ITW_eer:2.88, AI4TRUST_eer:35.92
+Datasets: ['MLAAD', 'ASV5', 'ASV21'], ITW_eer:3.94, AI4TRUST_eer:20.46
+Datasets: ['ASV19', 'ODSS', 'FoR', 'TIMIT'], ITW_eer:2.85, AI4TRUST_eer:42.13
+Datasets: ['ASV19', 'ODSS', 'FoR', 'MLAAD'], ITW_eer:3.98, AI4TRUST_eer:36.97
+Datasets: ['ASV19', 'ODSS', 'FoR', 'ASV5'], ITW_eer:3.90, AI4TRUST_eer:35.32
+Datasets: ['ASV19', 'ODSS', 'FoR', 'ASV21'], ITW_eer:3.68, AI4TRUST_eer:42.77
+Datasets: ['ASV19', 'ODSS', 'TIMIT', 'MLAAD'], ITW_eer:4.44, AI4TRUST_eer:22.97
+Datasets: ['ASV19', 'ODSS', 'TIMIT', 'ASV5'], ITW_eer:3.52, AI4TRUST_eer:29.43
+Datasets: ['ASV19', 'ODSS', 'TIMIT', 'ASV21'], ITW_eer:3.62, AI4TRUST_eer:20.10
+Datasets: ['ASV19', 'ODSS', 'MLAAD', 'ASV5'], ITW_eer:4.99, AI4TRUST_eer:18.06
+Datasets: ['ASV19', 'ODSS', 'MLAAD', 'ASV21'], ITW_eer:4.84, AI4TRUST_eer:28.35
+Datasets: ['ASV19', 'ODSS', 'ASV5', 'ASV21'], ITW_eer:3.75, AI4TRUST_eer:38.24
+Datasets: ['ASV19', 'FoR', 'TIMIT', 'MLAAD'], ITW_eer:3.37, AI4TRUST_eer:35.17
+Datasets: ['ASV19', 'FoR', 'TIMIT', 'ASV5'], ITW_eer:4.01, AI4TRUST_eer:42.80
+Datasets: ['ASV19', 'FoR', 'TIMIT', 'ASV21'], ITW_eer:3.17, AI4TRUST_eer:46.09
+Datasets: ['ASV19', 'FoR', 'MLAAD', 'ASV5'], ITW_eer:4.19, AI4TRUST_eer:24.97
+Datasets: ['ASV19', 'FoR', 'MLAAD', 'ASV21'], ITW_eer:3.26, AI4TRUST_eer:42.97
+Datasets: ['ASV19', 'FoR', 'ASV5', 'ASV21'], ITW_eer:4.14, AI4TRUST_eer:44.49
+Datasets: ['ASV19', 'TIMIT', 'MLAAD', 'ASV5'], ITW_eer:4.20, AI4TRUST_eer:19.21
+Datasets: ['ASV19', 'TIMIT', 'MLAAD', 'ASV21'], ITW_eer:4.18, AI4TRUST_eer:32.68
+Datasets: ['ASV19', 'TIMIT', 'ASV5', 'ASV21'], ITW_eer:3.52, AI4TRUST_eer:41.01
+Datasets: ['ASV19', 'MLAAD', 'ASV5', 'ASV21'], ITW_eer:3.83, AI4TRUST_eer:22.40
+Datasets: ['ODSS', 'FoR', 'TIMIT', 'MLAAD'], ITW_eer:2.95, AI4TRUST_eer:36.21
+Datasets: ['ODSS', 'FoR', 'TIMIT', 'ASV5'], ITW_eer:2.95, AI4TRUST_eer:28.77
+Datasets: ['ODSS', 'FoR', 'TIMIT', 'ASV21'], ITW_eer:2.87, AI4TRUST_eer:41.16
+Datasets: ['ODSS', 'FoR', 'MLAAD', 'ASV5'], ITW_eer:3.66, AI4TRUST_eer:24.99
+Datasets: ['ODSS', 'FoR', 'MLAAD', 'ASV21'], ITW_eer:2.66, AI4TRUST_eer:42.58
+Datasets: ['ODSS', 'FoR', 'ASV5', 'ASV21'], ITW_eer:3.57, AI4TRUST_eer:35.52
+Datasets: ['ODSS', 'TIMIT', 'MLAAD', 'ASV5'], ITW_eer:4.42, AI4TRUST_eer:16.63
+Datasets: ['ODSS', 'TIMIT', 'MLAAD', 'ASV21'], ITW_eer:3.46, AI4TRUST_eer:27.68
+Datasets: ['ODSS', 'TIMIT', 'ASV5', 'ASV21'], ITW_eer:2.86, AI4TRUST_eer:29.82
+Datasets: ['ODSS', 'MLAAD', 'ASV5', 'ASV21'], ITW_eer:4.65, AI4TRUST_eer:22.67
+Datasets: ['FoR', 'TIMIT', 'MLAAD', 'ASV5'], ITW_eer:3.73, AI4TRUST_eer:17.22
+Datasets: ['FoR', 'TIMIT', 'MLAAD', 'ASV21'], ITW_eer:2.40, AI4TRUST_eer:42.97
+Datasets: ['FoR', 'TIMIT', 'ASV5', 'ASV21'], ITW_eer:3.23, AI4TRUST_eer:43.42
+Datasets: ['FoR', 'MLAAD', 'ASV5', 'ASV21'], ITW_eer:3.40, AI4TRUST_eer:30.51
+Datasets: ['TIMIT', 'MLAAD', 'ASV5', 'ASV21'], ITW_eer:3.31, AI4TRUST_eer:21.06
+Datasets: ['ASV19', 'ODSS', 'FoR', 'TIMIT', 'MLAAD'], ITW_eer:3.46, AI4TRUST_eer:39.11
+Datasets: ['ASV19', 'ODSS', 'FoR', 'TIMIT', 'ASV5'], ITW_eer:3.41, AI4TRUST_eer:35.62
+Datasets: ['ASV19', 'ODSS', 'FoR', 'TIMIT', 'ASV21'], ITW_eer:3.28, AI4TRUST_eer:44.25
+Datasets: ['ASV19', 'ODSS', 'FoR', 'MLAAD', 'ASV5'], ITW_eer:4.10, AI4TRUST_eer:27.15
+Datasets: ['ASV19', 'ODSS', 'FoR', 'MLAAD', 'ASV21'], ITW_eer:3.61, AI4TRUST_eer:39.85
+Datasets: ['ASV19', 'ODSS', 'FoR', 'ASV5', 'ASV21'], ITW_eer:3.41, AI4TRUST_eer:38.68
+Datasets: ['ASV19', 'ODSS', 'TIMIT', 'MLAAD', 'ASV5'], ITW_eer:4.26, AI4TRUST_eer:21.74
+Datasets: ['ASV19', 'ODSS', 'TIMIT', 'MLAAD', 'ASV21'], ITW_eer:3.97, AI4TRUST_eer:28.53
+Datasets: ['ASV19', 'ODSS', 'TIMIT', 'ASV5', 'ASV21'], ITW_eer:3.68, AI4TRUST_eer:28.11
+Datasets: ['ASV19', 'ODSS', 'MLAAD', 'ASV5', 'ASV21'], ITW_eer:4.39, AI4TRUST_eer:24.05
+Datasets: ['ASV19', 'ODSS', 'MLAAD', 'ASV5', 'ASV21'], ITW_eer:4.39, AI4TRUST_eer:24.05
+Datasets: ['ASV19', 'FoR', 'TIMIT', 'MLAAD', 'ASV5'], ITW_eer:3.94, AI4TRUST_eer:25.29
+Datasets: ['ASV19', 'FoR', 'TIMIT', 'MLAAD', 'ASV21'], ITW_eer:2.97, AI4TRUST_eer:41.66
+Datasets: ['ASV19', 'FoR', 'TIMIT', 'ASV5', 'ASV21'], ITW_eer:3.79, AI4TRUST_eer:44.84
+Datasets: ['ASV19', 'FoR', 'MLAAD', 'ASV5', 'ASV21'], ITW_eer:3.79, AI4TRUST_eer:36.35
+Datasets: ['ASV19', 'TIMIT', 'MLAAD', 'ASV5', 'ASV21'], ITW_eer:2.99, AI4TRUST_eer:23.92
+Datasets: ['ODSS', 'FoR', 'TIMIT', 'MLAAD', 'ASV5'], ITW_eer:2.98, AI4TRUST_eer:25.27
+Datasets: ['ODSS', 'FoR', 'TIMIT', 'MLAAD', 'ASV21'], ITW_eer:2.39, AI4TRUST_eer:41.58
+Datasets: ['ODSS', 'FoR', 'TIMIT', 'ASV5', 'ASV21'], ITW_eer:3.01, AI4TRUST_eer:37.88
+Datasets: ['ODSS', 'FoR', 'MLAAD', 'ASV5', 'ASV21'], ITW_eer:3.37, AI4TRUST_eer:31.73
+Datasets: ['ODSS', 'TIMIT', 'MLAAD', 'ASV5', 'ASV21'], ITW_eer:3.83, AI4TRUST_eer:25.67
+Datasets: ['FoR', 'TIMIT', 'MLAAD', 'ASV5', 'ASV21'], ITW_eer:2.55, AI4TRUST_eer:30.84
+Datasets: ['ASV19', 'ODSS', 'FoR', 'TIMIT', 'MLAAD', 'ASV5'], ITW_eer:3.50, AI4TRUST_eer:26.58
+Datasets: ['ASV19', 'ODSS', 'FoR', 'TIMIT', 'MLAAD', 'ASV21'], ITW_eer:3.30, AI4TRUST_eer:38.00
+Datasets: ['ASV19', 'ODSS', 'FoR', 'TIMIT', 'ASV5', 'ASV21'], ITW_eer:3.19, AI4TRUST_eer:41.71
+Datasets: ['ASV19', 'ODSS', 'FoR', 'MLAAD', 'ASV5', 'ASV21'], ITW_eer:3.76, AI4TRUST_eer:34.09
+Datasets: ['ASV19', 'ODSS', 'TIMIT', 'MLAAD', 'ASV5', 'ASV21'], ITW_eer:3.88, AI4TRUST_eer:25.66
+Datasets: ['ASV19', 'FoR', 'TIMIT', 'MLAAD', 'ASV5', 'ASV21'], ITW_eer:3.13, AI4TRUST_eer:33.50
+Datasets: ['ODSS', 'FoR', 'TIMIT', 'MLAAD', 'ASV5', 'ASV21'], ITW_eer:2.67, AI4TRUST_eer:32.09
+Datasets: ['ASV19', 'ODSS', 'FoR', 'TIMIT', 'MLAAD', 'ASV5', 'ASV21'], ITW_eer:3.27, AI4TRUST_eer:33.58

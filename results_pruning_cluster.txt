@@ -1,0 +1,81 @@
+### PRUNING FRACTION =  0.1
+### TRAIN SET SHAPE ###
+(97596, 1920)
+(97596,)
+*** Evaluating model...
+ITW validation EER: 4.02
+threshold:1.00
+ai4trust validation EER: 17.13
+threshold:1.00
+### PRUNING FRACTION =  0.2
+### TRAIN SET SHAPE ###
+(195179, 1920)
+(195179,)
+*** Evaluating model...
+ITW validation EER: 3.08
+threshold:1.00
+ai4trust validation EER: 27.22
+threshold:1.16
+### PRUNING FRACTION =  0.3
+### TRAIN SET SHAPE ###
+(292759, 1920)
+(292759,)
+*** Evaluating model...
+ITW validation EER: 3.17
+threshold:1.00
+ai4trust validation EER: 35.12
+threshold:1.30
+### PRUNING FRACTION =  0.4
+### TRAIN SET SHAPE ###
+(390345, 1920)
+(390345,)
+*** Evaluating model...
+ITW validation EER: 3.69
+threshold:0.91
+ai4trust validation EER: 34.14
+threshold:1.27
+### PRUNING FRACTION =  0.5
+### TRAIN SET SHAPE ###
+(487930, 1920)
+(487930,)
+*** Evaluating model...
+ITW validation EER: 3.77
+threshold:0.45
+ai4trust validation EER: 34.65
+threshold:1.29
+### PRUNING FRACTION =  0.6
+### TRAIN SET SHAPE ###
+(585509, 1920)
+(585509,)
+*** Evaluating model...
+ITW validation EER: 3.55
+threshold:0.97
+ai4trust validation EER: 33.51
+threshold:1.28
+### PRUNING FRACTION =  0.7
+### TRAIN SET SHAPE ###
+(683091, 1920)
+(683091,)
+*** Evaluating model...
+ITW validation EER: 3.49
+threshold:1.00
+ai4trust validation EER: 36.90
+threshold:1.33
+### PRUNING FRACTION =  0.8
+### TRAIN SET SHAPE ###
+(780675, 1920)
+(780675,)
+*** Evaluating model...
+ITW validation EER: 3.24
+threshold:1.00
+ai4trust validation EER: 34.31
+threshold:1.30
+### PRUNING FRACTION =  0.9
+### TRAIN SET SHAPE ###
+(878256, 1920)
+(878256,)
+*** Evaluating model...
+ITW validation EER: 3.31
+threshold:1.00
+ai4trust validation EER: 32.62
+threshold:1.29

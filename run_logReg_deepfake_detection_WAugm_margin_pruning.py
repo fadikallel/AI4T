@@ -11,15 +11,13 @@ from joblib import dump
 def get_baseline_data():
     Ytrain = []
     ## after computing pruning, add the file saved in line 68 in pruning_margin.py
-    fpath = os.path.join(
-        meta_dir, "metadata_marginPruned_XLS_fromALL_margin_both_135.txt"
-    )
+    fpath = os.path.join("selected_files_both_135.txt")
     with open(fpath) as fin:
         for line in fin.readlines():
             label = 1 if line.strip().split("|")[2] == "bonafide" else 0
             Ytrain.append(label)
     Ytrain = np.array(Ytrain)
-    Xtrain = np.load(fpath + ".npy")
+    Xtrain = np.load("selected_files_both_135.npy")
     print("X pruned:", Xtrain.shape, Ytrain.shape)
     return Xtrain, Ytrain
 
@@ -34,15 +32,15 @@ def compute_eer(Ytest, Y_hat):
 Xtrain, Ytrain = get_baseline_data()
 
 ## read augm data
-N1 = 0
+N1 = 1
 N2 = 2
 
 ## prepare training data
 Y = []
 for fi in metadata_augm[N1:N2]:
     with open(os.path.join(meta_dir, fi)) as fin:
-        for line in sorted(fin.readlines()):
-            Y.append(1 if line.strip().split("|")[1] == "bonafide" else 0)
+        for line in fin:
+            Y.append(1 if line.strip().split("|")[2] == "bonafide" else 0)
 
 Y.extend(Ytrain)
 Y = np.array(Y)
@@ -56,14 +54,11 @@ for fi in feats_augm[N1:N2]:
 
 
 l = Xtrain.shape[0]
-p1 = np.random.choice([x for x in range(l)], size=l // 2)
-remain = set([x for x in range(l)]) - set(p1)
+# Sample half from original, half from rawboost
+p1 = np.random.choice(range(l), size=l // 2, replace=False)
+p2 = np.random.choice([l + x for x in range(l)], size=l // 2, replace=False)
 
-p2 = np.random.choice([l + x for x in remain], size=l // 3)
-remain = remain - set(p2)
-
-p3 = np.random.choice([2 * l + x for x in remain], size=l // 3)
-p = np.hstack((p1, p2, p3))
+p = np.hstack((p1, p2))
 
 
 X.extend(Xtrain)
@@ -86,7 +81,10 @@ dump(clf, "logreg_margin_pruning_ALL.joblib")
 ## predict
 
 print("Predicting...")
-
+eval_groups = {
+    "itw": [2],
+    "ai4trust": [3]
+}
 for g in eval_groups:
     k = eval_groups[g]
     X, Y = [], []
@@ -94,7 +92,7 @@ for g in eval_groups:
 
     for index in k:
         with open(os.path.join(meta_dir, metadata_augm[index])) as fin:
-            for line in sorted(fin.readlines()):
+            for line in fin.readlines():
                 Y.append(1 if line.strip().split("|")[1] == "bonafide" else 0)
                 filenames.append(line.strip().split("|")[0])
 

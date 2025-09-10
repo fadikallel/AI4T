@@ -12,9 +12,7 @@ import torch
 import librosa
 from transformers import (
     AutoFeatureExtractor,
-    Wav2Vec2Model,
-    Wav2Vec2BertConfig,
-    Wav2Vec2BertModel,
+    Wav2Vec2Model
 )
 
 
@@ -209,97 +207,67 @@ def process_Rawboost_feature(feature, sr, args, algo):
 
     return feature
 
+# ---------------- Dataset paths ---------------- #
 
-def genSpoof_list(dir_meta, is_train=False, is_eval=False):
-    d_meta = {}
-    file_list = []
-    with open(dir_meta, "r") as f:
-        l_meta = f.readlines()
+BASE_PATHS = {
+    "asv19": {
+        "train": "/ds-slt/audio/ASVSpoof_LA_19/ASVspoof2019_LA_train/flac/",
+        "dev": "/ds-slt/audio/ASVSpoof_LA_19/ASVspoof2019_LA_dev/flac/",
+        "eval": "/ds-slt/audio/ASVSpoof_LA_19/ASVspoof2019_LA_eval/flac/",
+    },
+    "asv21": {
+        "eval": "/netscratch/fkallel/DATA/ASVspoof2021_DF_eval/flac/",
+    },
+    "asv5": {
+        "train": "/ds-slt/audio/ASVSpoof2024/flac_T/",
+        "dev": "/ds-slt/audio/ASVSpoof2024/flac_D/",
+    },
+}
 
-    if is_train:
-        for line in l_meta:
-            _, key, _, _, label = line.strip().split(" ")
-            file_list.append(key)
-            d_meta[key] = 1 if label == "bonafide" else 0
-        return d_meta, file_list
+def read_metadata(file_path):
+    entries = []
+    with open(file_path, "r") as f:
+        for line in f:
+            parts = line.strip().split("|")
+            if len(parts) < 2:
+                continue
+            dataset = parts[0].lower()
+            utt_id = parts[1]
+            label = parts[2] if len(parts) > 2 else None
 
-    elif is_eval:
-        for line in l_meta:
-            key = line.strip()
-            file_list.append(key)
-        return file_list
-    else:
-        for line in l_meta:
-            _, key, _, _, label = line.strip().split(" ")
-            file_list.append(key)
-            d_meta[key] = 1 if label == "bonafide" else 0
-        return d_meta, file_list
+            if dataset == "asv19":
+                if utt_id.startswith("LA_T"):
+                    split = "train"
+                elif utt_id.startswith("LA_D"):
+                    split = "dev"
+                elif utt_id.startswith("LA_E"):
+                    split = "eval"
+                else:
+                    continue
+            elif dataset == "asv5":
+                if utt_id.startswith("T_"):
+                    split = "train"
+                elif utt_id.startswith("D_"):
+                    split = "dev"
+                else:
+                    continue
+            elif dataset == "asv21":
+                split = "eval"
+            else:
+                continue
 
+            entries.append((dataset, split, utt_id, label))
+    return entries
 
-# def pad(x, max_len=64600):
-#     x_len = x.shape[0]
-#     if x_len >= max_len:
-#         return x[:max_len]
-#     # need to pad
-#     num_repeats = int(max_len / x_len) + 1
-#     padded_x = np.tile(x, (1, num_repeats))[:, :max_len][0]
-#     return padded_x
+def get_audio_path(dataset, split, utt_id):
+    return os.path.join(BASE_PATHS[dataset][split], f"{utt_id}.flac")
 
-
-class Dataset_ASVspoof2019_train(Dataset):
-    def __init__(self, args, list_IDs, labels, base_dir, algo):
-        """self.list_IDs	: list of strings (each string: utt key),
-        self.labels      : dictionary (key: utt key, value: label integer)"""
-
-        self.list_IDs = list_IDs
-        self.labels = labels
-        self.base_dir = base_dir
-        self.algo = algo
-        self.args = args
-        # self.cut = 64600  # take ~4 sec audio (64600 samples)
-
-    def __len__(self):
-        return len(self.list_IDs)
-
-    def __getitem__(self, index):
-        key = self.list_IDs[index]
-        X, fs = librosa.load(self.base_dir + "flac/" + key + ".flac", sr=16000)
-        Y = process_Rawboost_feature(X, fs, self.args, self.algo)
-        # X_pad = pad(Y, self.cut)
-        # x_inp = Tensor(X_pad)
-        y = self.labels[key]
-
-        return Y, y
-
-
-class Dataset_ASVspoof2021_eval(Dataset):
-    def __init__(self, list_IDs, base_dir):
-        """self.list_IDs	: list of strings (each string: utt key),"""
-
-        self.list_IDs = list_IDs
-        self.base_dir = base_dir
-        # self.cut = 64600  # take ~4 sec audio (64600 samples)
-
-    def __len__(self):
-        return len(self.list_IDs)
-
-    def __getitem__(self, index):
-        key = self.list_IDs[index]
-        X, fs = librosa.load(self.base_dir + "flac/" + key + ".flac", sr=16000)
-        # X_pad = pad(X, self.cut)
-        # x_inp = Tensor(X_pad)
-        return X, key
-
+# ---------------- Wav2Vec2 ---------------- #
 
 class Wav2Vec2Truncated(Wav2Vec2Model):
     def __init__(self, config):
         super().__init__(config)
         self.encoder.layers = self.encoder.layers[:9]
-
-
-model_name = "facebook/wav2vec2-xls-r-2b"
-model = Wav2Vec2Truncated.from_pretrained(model_name)
-
 
 class HuggingFaceFeatureExtractor:
     def __init__(self, model_class, name=None):
@@ -308,70 +276,54 @@ class HuggingFaceFeatureExtractor:
         self.model = model_class.from_pretrained(name, output_hidden_states=True)
         self.model.eval()
         self.model.to(self.device)
-        print(self.model)
 
     def __call__(self, audio, sr):
         inputs = self.feature_extractor(
-            audio,
-            sampling_rate=sr,
-            return_tensors="pt",
-            padding=True,
+            audio, sampling_rate=sr, return_tensors="pt", padding=True
         )
         inputs = {k: v.to(self.device) for k, v in inputs.items()}
         with torch.no_grad():
             outputs = self.model(**inputs)
         return outputs.hidden_states[9]
 
-
-FEATURE_EXTRACTOR = {
+FEATURE_EXTRACTORS = {
     "wav2vec2-xls-r-2b": lambda: HuggingFaceFeatureExtractor(
         Wav2Vec2Truncated, "facebook/wav2vec2-xls-r-2b"
-    )
+    ),
 }
 
+# ---------------- Main loop ---------------- #
 
-def read_metadata(file_path):
-    relevant_files = []
-    with open(file_path, "r") as f:
-        for line in f:
-            parts = line.strip().split("|")
-            if len(parts) > 1:
-                relevant_files.append(parts[0])
-    ## Be careful to the order in which the features are extracted !!
-    return relevant_files
-
-
-def main(outdir, indir, metadata_file, args, algo):
-    relevant_files = read_metadata(metadata_file)
-    print(f"Metadata contains {len(relevant_files)} files.")
+def extract_features_rawboost(outdir, metadata_file, args, algo):
+    entries = read_metadata(metadata_file)
+    print(f"Metadata contains {len(entries)} files.")
     model_name = "wav2vec2-xls-r-2b"
-    feature_extractor = FEATURE_EXTRACTOR[model_name]()
+    feature_extractor = FEATURE_EXTRACTORS[model_name]()
 
     layer_embeddings = []
+    for dataset, split, utt_id, label in tqdm(entries):
+        fi = get_audio_path(dataset, split, utt_id)
+        if not os.path.exists(fi):
+            print(f"Warning: file not found {fi}")
+            continue
 
-    for fi in tqdm(relevant_files):
-        fi = f"{os.path.join(indir,fi)}"
         audio, sr = librosa.load(fi, sr=16000)
-        # algo = random.randint(1,24)
         audio = process_Rawboost_feature(audio, sr, args, algo)
-        layer_output = feature_extractor(audio, sr)
-        mean_layer_output = torch.mean(layer_output, dim=1).cpu().numpy()
+        hidden_states = feature_extractor(audio, sr)
+        mean_layer_output = torch.mean(hidden_states, dim=1).cpu().numpy()
         layer_embeddings.append(mean_layer_output)
+
     stacked_embeddings = np.vstack(layer_embeddings)
     np.save(
-        os.path.join(outdir, f"wav2vec2-xls-r-2b_asv19_train_augm_rb_Layer9.npy"),
+        os.path.join(outdir, f"wav2vec2-xls-r-2b_augm_rb_Layer9.npy"),
         stacked_embeddings,
     )
 
-
 if __name__ == "__main__":
     print("script running")
-    ## location of the wav files
-    indir = "./DATA/asv19/"
-    ## location for the saved features
+    metadata_file = "./processed_metadata/metadata_marginPruned_XLS_fromALL_margin_both_135.txt"
     outdir = "./feats/wav2vec2-xls-r-2b/"
-    ## location of the metadata coresponding to the extracted dataset
-    metadata_file = "./processed_metadata/asv19_train_systems.csv"
+    os.makedirs(outdir, exist_ok=True)
 
     class Args:
         algo = 5
@@ -391,7 +343,7 @@ if __name__ == "__main__":
         g_sd = 2
         SNRmin = 10
         SNRmax = 40
-
     args = Args()
 
-    main(outdir, indir, metadata_file, args, algo=5)
+    extract_features_rawboost(outdir, metadata_file, args, algo=5)
+
