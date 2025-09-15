@@ -93,7 +93,7 @@ def main(outdir, indir, metadata_file, batch_size=8, num_workers=2):
 
 if __name__ == "__main__":
     print("script running")
-    indir = "/netscratch/fkallel/DATA/for-norm/for-norm/"
+    indir = "/ds-slt/audio/for-norm/for-norm/"
     outdir = "./feats/wav2vec2-xls-r-2b/"
     metadata_file = "./processed_metadata/for_systems.csv"
     main(outdir, indir, metadata_file, batch_size=8, num_workers=2)

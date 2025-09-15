@@ -8,6 +8,7 @@ from sklearn.metrics import roc_curve
 from sklearn.linear_model import LogisticRegression
 
 
+
 def compute_eer(Ytest, Y_hat):
     fpr, tpr, thresholds = roc_curve(Ytest, Y_hat[:, 1], pos_label=1)
     eer = brentq(lambda x: 1.0 - x - interp1d(fpr, tpr)(x), 0.0, 1.0)
@@ -29,7 +30,6 @@ def load_dataset(indices, meta_dir, metadata, feats_dir, feats):
 
     Ytrain = np.array(Ytrain)
     Xtrain = np.array(Xtrain)
-
     return Xtrain, Ytrain, filename, dbs
 
 
@@ -112,8 +112,8 @@ def prune_by_margin(
         X_pruned, y_pruned = X[important_points], y[important_points]
         np.save(fpath.replace("txt", "npy"), X_pruned, allow_pickle=True)
         X, y = X_pruned, y_pruned
-        # filename_pruned = [filename[j] for j in important_index]
-        # dbs_pruned = [dbs[j] for j in important_index]
+        filename  = [filename[j] for j in important_index]
+        dbs= [dbs[j] for j in important_index]
         print(f"number of samples after pruning: {X_pruned.shape[0]}")
         clf = LogisticRegression(max_iter=10_000, random_state=46, C=1e6)
         clf.fit(X_pruned, y_pruned)

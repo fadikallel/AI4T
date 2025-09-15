@@ -18,7 +18,7 @@ BASE_PATHS = {
         "dev": "/ds-slt/audio/ASVSpoof_LA_19/ASVspoof2019_LA_dev/flac/",
         "eval": "/ds-slt/audio/ASVSpoof_LA_19/ASVspoof2019_LA_eval/flac/",
     },
-    "asv21": {"eval": "/netscratch/fkallel/DATA/ASVspoof2021_DF_eval/flac/"},
+    "asv21": {"eval": "/ds-slt/audio/ASVspoof2021_DF_eval/flac/"},
     "asv5": {
         "train": "/ds-slt/audio/ASVSpoof2024/flac_T/",
         "dev": "/ds-slt/audio/ASVSpoof2024/flac_D/",

@@ -71,7 +71,7 @@ def main(outdir, indir, metadata_file):
 if __name__ == "__main__":
     print("script running")
     ## location of the wav files
-    indir = "/netscratch/fkallel/DATA/release_in_the_wild/"
+    indir = "/ds-slt/audio/release_in_the_wild/"
     ## location for the saved features
     outdir = "./feats/wav2vec2-xls-r-2b/"
     ## location of the metadata coresponding to the extracted dataset
