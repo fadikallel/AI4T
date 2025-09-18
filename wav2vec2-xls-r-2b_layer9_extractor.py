@@ -1,11 +1,11 @@
 import os
 import torch
-import librosa
+import torchaudio
 import numpy as np
 from tqdm import tqdm
 from torch.utils.data import Dataset, DataLoader
 from transformers import AutoFeatureExtractor, Wav2Vec2Model
-import parsearg
+import argparse
 from config import DATASETS
 
 class HuggingFaceFeatureExtractor:
@@ -47,15 +47,22 @@ class AudioDataset(Dataset):
         if self.wav:
             fi = fi + ".wav"
         path = os.path.join(self.indir, fi)
-        audio, _ = librosa.load(path, sr=self.sr)
-        return audio, self.sr, fi
+        waveform, sr = torchaudio.load(path)  # [channels, time], sample rate
+        if sr != self.sr:
+            resampler = torchaudio.transforms.Resample(sr, self.sr)
+            waveform = resampler(waveform)
+        # Convert to mono if stereo
+        if waveform.shape[0] > 1:
+            waveform = torch.mean(waveform, dim=0, keepdim=True)
+        waveform = waveform.squeeze().numpy()
+        return waveform, self.sr, fi
 
 
-def read_metadata(file_path):
+def read_metadata(file_path, split="|"):
     relevant_files = []
     with open(file_path, "r") as f:
         for line in f:
-            parts = line.strip().split("|")
+            parts = line.strip().split(split)
             if len(parts) > 1:
                 relevant_files.append(parts[0])
     return relevant_files
@@ -68,14 +75,15 @@ def collate_fn(batch):
 
 def main(config, batch_size=8, num_workers=2):
     metadata_file = config["metadata"]
-    relevant_files = read_metadata(metadata_file)
+    wav = config.get("wav", False)   
+    split = " " if wav else "|" 
+    relevant_files = read_metadata(metadata_file, split=split)
     print(f"Metadata contains {len(relevant_files)} files.")
     
     feature_extractor = HuggingFaceFeatureExtractor(
         Wav2Vec2Model, "facebook/wav2vec2-xls-r-2b"
     )
     flac = config.get("flac", False)
-    wav = config.get("wav", False)   
     dataset = AudioDataset(relevant_files, config["indir"], sr=16000, flac=flac, wav=wav)
     dataloader = DataLoader(
         dataset,
@@ -102,9 +110,10 @@ def main(config, batch_size=8, num_workers=2):
 
 if __name__ == "__main__":
     print("script running")
-    parser = parsearg.ArgumentParser()
+    parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", type=str, required=True)
+    parser.add_argument("--batch-size", type=int, default=8)
     args = parser.parse_args()
 
     config = DATASETS[args.dataset]
-    main(config, batch_size=8, num_workers=2)
+    main(config, batch_size=args.batch_size, num_workers=0)

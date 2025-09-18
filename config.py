@@ -82,16 +82,16 @@ DATASETS = {
         "outfile": "./feats/wav2vec2-xls-r-2b/wav2vec2-xls-r-2b_Layer9_ADD22_track3.npy",
         "wav": True
     },
-    "ADD2023_round1":{
+    "ADD23_round1":{
         "indir": "/ds/audio/ADD23_track_1.2/Track1.2/testR1/wav/",
-        "metadata": "./processed_metadata/ADD2023_round1.txt",
-        "outfile": "./feats/wav2vec2-xls-r-2b/wav2vec2-xls-r-2b_Layer9_ADD2023_round1.npy",
+        "metadata": "./processed_metadata/ADD23_round1.txt",
+        "outfile": "./feats/wav2vec2-xls-r-2b/wav2vec2-xls-r-2b_Layer9_ADD23_round1.npy",
         "wav": True
     },
-    "ADD2023_round2":{
+    "ADD23_round2":{
         "indir": "/ds/audio/ADD23_track_1.2/Track1.2/testR2/wav/",
-        "metadata": "./processed_metadata/ADD2023_round2.txt",
-        "outfile": "./feats/wav2vec2-xls-r-2b/wav2vec2-xls-r-2b_Layer9_ADD2023_round2.npy",
+        "metadata": "./processed_metadata/ADD23_round2.txt",
+        "outfile": "./feats/wav2vec2-xls-r-2b/wav2vec2-xls-r-2b_Layer9_ADD23_round2.npy",
         "wav": True
     },
 }
