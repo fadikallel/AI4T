@@ -28,7 +28,7 @@ DATASETS = {
         "flac": True
     },
     "asv21": {
-        "indir": "/ds-slt/audio/ASVspoof2021/DF/ASVspoof2021_DF_eval/flac",
+        "indir": "/ds/audio/DF_21/ASVspoof2021_DF_eval/flac/",
         "metadata": "./processed_metadata/asv21_systems.csv",
         "outfile": "./feats/wav2vec2-xls-r-2b/wav2vec2-xls-r-2b_Layer9_asv21.npy",
         "flac": True
@@ -61,7 +61,7 @@ DATASETS = {
         "outfile": "./feats/wav2vec2-xls-r-2b/wav2vec2-xls-r-2b_Layer9_odss.npy"
     },
     "itw": {
-        "indir": "/ds-slt/audio/release_in_the_wild/",
+        "indir": "/ds/audio/InTheWild/release_in_the_wild/",
         "metadata": "./processed_metadata/itw_systems.csv",
         "outfile": "./feats/wav2vec2-xls-r-2b/wav2vec2-xls-r-2b_Layer9_itw.npy"
     },

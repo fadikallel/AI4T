@@ -1,0 +1,16 @@
+	pruning fraction: 0.1, itw_eer:4.02, ai4trust_eer:17.13
+	pruning fraction: 0.2, itw_eer:3.08, ai4trust_eer:27.22
+	pruning fraction: 0.3, itw_eer:3.17, ai4trust_eer:35.12
+	pruning fraction: 0.4, itw_eer:3.69, ai4trust_eer:34.14
+	pruning fraction: 0.5, itw_eer:3.77, ai4trust_eer:34.65
+	pruning fraction: 0.6, itw_eer:3.55, ai4trust_eer:33.51
+	pruning fraction: 0.7, itw_eer:3.49, ai4trust_eer:36.90
+	pruning fraction: 0.1, itw_eer:4.02, ai4trust_eer:17.13
+	pruning fraction: 0.2, itw_eer:3.08, ai4trust_eer:27.22
+	pruning fraction: 0.3, itw_eer:3.17, ai4trust_eer:35.12
+	pruning fraction: 0.4, itw_eer:3.69, ai4trust_eer:34.14
+	pruning fraction: 0.5, itw_eer:3.77, ai4trust_eer:34.65
+	pruning fraction: 0.6, itw_eer:3.55, ai4trust_eer:33.51
+	pruning fraction: 0.7, itw_eer:3.49, ai4trust_eer:36.90
+	pruning fraction: 0.8, itw_eer:3.24, ai4trust_eer:34.31
+	pruning fraction: 0.9, itw_eer:3.31, ai4trust_eer:32.62

@@ -1,0 +1,29 @@
+### Fitting baseline logReg
+Baseline ITW 3.77
+Baseline AI4T 33.59
+Baseline ADD22_track1 27.55
+Baseline ADD22_track3 4.67
+Baseline ADD23_round1 18.44
+Baseline ADD23_round2 18.38
+loaded:  logreg_baseline.joblib
+using:  both pruning
+number of samples after pruning: 768542
+Step 1: EER ITW=2.39%, AI4T=15.16%, ADD22_track1=23.47%, ADD22_track3=3.27%, ADD23_round1=18.48%, ADD23_round2=13.52%
+number of samples after pruning: 691686
+Step 2: EER ITW=2.07%, AI4T=14.96%, ADD22_track1=24.13%, ADD22_track3=3.07%, ADD23_round1=19.39%, ADD23_round2=13.51%
+number of samples after pruning: 608682
+Step 3: EER ITW=2.0%, AI4T=14.76%, ADD22_track1=25.02%, ADD22_track3=3.14%, ADD23_round1=20.69%, ADD23_round2=13.81%
+number of samples after pruning: 523466
+Step 4: EER ITW=1.77%, AI4T=14.57%, ADD22_track1=24.28%, ADD22_track3=3.1%, ADD23_round1=18.91%, ADD23_round2=13.41%
+number of samples after pruning: 439710
+Step 5: EER ITW=1.69%, AI4T=12.8%, ADD22_track1=25.12%, ADD22_track3=3.55%, ADD23_round1=19.48%, ADD23_round2=13.79%
+number of samples after pruning: 360562
+Step 6: EER ITW=1.88%, AI4T=12.01%, ADD22_track1=23.75%, ADD22_track3=3.12%, ADD23_round1=20.6%, ADD23_round2=14.04%
+number of samples after pruning: 281238
+Step 7: EER ITW=1.78%, AI4T=12.52%, ADD22_track1=24.9%, ADD22_track3=3.77%, ADD23_round1=22.01%, ADD23_round2=14.99%
+number of samples after pruning: 196866
+Step 8: EER ITW=1.81%, AI4T=12.4%, ADD22_track1=24.1%, ADD22_track3=3.62%, ADD23_round1=22.0%, ADD23_round2=13.96%
+number of samples after pruning: 114182
+Step 9: EER ITW=1.85%, AI4T=11.79%, ADD22_track1=23.98%, ADD22_track3=3.0%, ADD23_round1=22.77%, ADD23_round2=15.25%
+number of samples after pruning: 29689
+Step 10: EER ITW=1.79%, AI4T=11.22%, ADD22_track1=24.23%, ADD22_track3=3.77%, ADD23_round1=22.71%, ADD23_round2=16.1%
